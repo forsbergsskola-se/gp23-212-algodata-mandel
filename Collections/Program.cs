@@ -1,3 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿List<string> names = new List<string>();
+names.Add("Marc");
+names.Add("Daniel");
+names.Add("René");
+names.Add("ABC");
 
-Console.WriteLine("Hello, World!");
+var iterator = names.GetEnumerator();
+bool isThereOneMoreItem = iterator.MoveNext();
+if (isThereOneMoreItem)
+{
+    Console.WriteLine(iterator.Current);
+}
+
