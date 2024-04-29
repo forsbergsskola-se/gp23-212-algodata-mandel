@@ -56,7 +56,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Project.P0HelloWorld">
+  <component name="RunManager" selected=".NET Project.P2IteratorPattern">
     <configuration name="Collections" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -120,7 +120,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714379974799</updated>
-      <workItem from="1714379983952" duration="8371000" />
+      <workItem from="1714379983952" duration="11651000" />
     </task>
     <servers />
   </component>
