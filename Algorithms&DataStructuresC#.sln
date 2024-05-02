@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboCollections", "TurboCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboCollections.Test", "TurboCollections.Test\TurboCollections.Test.csproj", "{ACED48BC-E6A2-4766-A739-BE090B46A3E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStateHistory", "GameStateHistory\GameStateHistory.csproj", "{87567645-C04C-4D24-8845-4EC4092353D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{ACED48BC-E6A2-4766-A739-BE090B46A3E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACED48BC-E6A2-4766-A739-BE090B46A3E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACED48BC-E6A2-4766-A739-BE090B46A3E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87567645-C04C-4D24-8845-4EC4092353D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87567645-C04C-4D24-8845-4EC4092353D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87567645-C04C-4D24-8845-4EC4092353D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87567645-C04C-4D24-8845-4EC4092353D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
