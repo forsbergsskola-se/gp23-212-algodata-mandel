@@ -56,4 +56,11 @@ public class TurboLinkedStackTests
         
         Assert.That(stack.Count, Is.EqualTo(3));
     }
+    
+    [Test]
+    public void TestPeekIntoEmptyStack(){
+        var stack = new TurboLinkedStack<int>();
+        CollectionAssert.IsEmpty(stack);
+        Assert.Throws<NullReferenceException>(()=>stack.Peek());
+    }
 }

@@ -23,6 +23,8 @@ public class TurboLinkedStack<T> : IEnumerable<T> {
 
     public T Peek()
     {
+        if (LastNode.Value == null)
+            throw new NullReferenceException();
         return LastNode.Value;
     }
 
