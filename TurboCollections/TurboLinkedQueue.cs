@@ -58,8 +58,8 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
 
     public T Peek()
     {
-        if (FirstNode.Value == null)
-            throw new NullReferenceException();
+        if (FirstNode == null)
+            throw new Exception();
         return FirstNode.Value;
     }
 

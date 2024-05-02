@@ -61,6 +61,6 @@ public class TurboLinkedStackTests
     public void TestPeekIntoEmptyStack(){
         var stack = new TurboLinkedStack<int>();
         CollectionAssert.IsEmpty(stack);
-        Assert.Throws<NullReferenceException>(()=>stack.Peek());
+        Assert.Throws<Exception>(()=>stack.Peek());
     }
 }
