@@ -21,7 +21,7 @@ public class TurboLinkedStackTests
         stack.Push(4);
         stack.Push(3);
         
-        Assert.AreEqual(3, stack.Peek());
+        Assert.That(stack.Peek(), Is.EqualTo(3));
     }
 
     [Test]

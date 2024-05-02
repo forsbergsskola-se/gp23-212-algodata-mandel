@@ -40,8 +40,10 @@ public class TurboLinkedStack<T> : IEnumerable<T> {
         LastNode = null;
     }
 
-    public int Count {
-        get{
+    public int Count 
+    {
+        get
+        {
             int count = 0;
             while(LastNode != null){
                 count++;
@@ -54,7 +56,8 @@ public class TurboLinkedStack<T> : IEnumerable<T> {
     public IEnumerator<T> GetEnumerator()
     {
         var current = LastNode;
-        while(current != null){
+        while (current != null)
+        {
             yield return current.Value;
             current = current.Previous;
         }
