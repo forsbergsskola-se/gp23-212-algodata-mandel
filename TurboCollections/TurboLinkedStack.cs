@@ -1,6 +1,7 @@
 using System.Collections;
-namespace TurboCollections;
 
+
+namespace TurboCollections;
 
 public class TurboLinkedStack<T> : IEnumerable<T> {
     class Node {
@@ -9,51 +10,60 @@ public class TurboLinkedStack<T> : IEnumerable<T> {
     }
     Node LastNode;
 
-    public void Push(T item) {
-        throw new NotImplementedException();
-        // Insert Code from AddNumber Example in #4 here
+    public void Push(T item)
+    {
+        Node newNode = new()
+        {
+            Value = item,
+            Previous = null
+        };
+        newNode.Previous = LastNode;
+        LastNode = newNode;
     }
 
-    public T Peek() {
-        throw new NotImplementedException();
-        // Return the Value of Last Node here.
+    public T Peek()
+    {
+        return LastNode.Value;
     }
 
     public T Pop()
     {
-        throw new NotImplementedException();
-        // 1. Save the Last Node locally so we can return the value later.
-        // 2. Now, assign the Last Node's Previous Node to be the Last Node.
-        // -- This effectively removes the previously Last Node of the Stack
-        // -- Imagine LastNode is customer 436
-        // -- -- who remembered that customer 435 was before him.
-        // -- We assign that before customer 435 to LastNode.
-        // -- -- 435 knows that 434 was before him.
-        // -- -- But he has no memory of customer 436.
-
-        // Now, return the Value of the Node that you cached in Step 1.
+        Node temp = LastNode;
+        LastNode = temp.Previous;
+        return temp.Value;
     }
 
-    public void Clear() {
-        // This one is incredibly easy. Just assign null to Field LastNode
-        // -- This is like pretending you never new that there is any last customer.
-        // -- by forgetting the latest customer, you forget them all.
+    public void Clear()
+    {
+        LastNode = null;
     }
 
     public int Count {
         get{
-            // Here, you need to do a while loop over all nodes
-            // Similar to the previous PrintAllNodes Function
-            // But instead of Printing Nodes, you just count how many Nodes you have visited
-            // Similar to this:
             int count = 0;
-            while(false/* remove false and replace with correct condition...*/){
+            while(LastNode != null){
                 count++;
+                LastNode = LastNode.Previous;
             }
             return count;
         }
     }
+    
+    public IEnumerator<T> GetEnumerator()
+    {
+        var current = LastNode;
+        while(current != null){
+            yield return current.Value;
+            current = current.Previous;
+        }
+    }
 
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    /*
     public IEnumerator<T> GetEnumerator() {
         // This one is a bonus and a bit more difficult.
         // You need to create a new class named Enumerator.
@@ -76,14 +86,18 @@ public class TurboLinkedStack<T> : IEnumerable<T> {
             _lastNode = lastNode;
         }
 
-        public bool MoveNext(){
-            throw new NotImplementedException();
+        public bool MoveNext()
+        {
             // if we don't have a current node, we start with the first node
             if(CurrentNode == null){
                 CurrentNode = FirstNode;
-            } else {
+            } else
+            {
+                CurrentNode = CurrentNode.Previous;
                 // Assign the Current Node's Previous Node to be the Current Node.
             }
+
+            return CurrentNode != null;
             // Return, whether there is a CurrentNode. Else, we have reached the end of the Stack, there's no more Elements.
         }
 
@@ -105,5 +119,6 @@ public class TurboLinkedStack<T> : IEnumerable<T> {
         {
             // This function is not needed right now.
         }
-    }
+    }*/
+    
 }
