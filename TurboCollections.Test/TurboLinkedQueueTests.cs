@@ -64,6 +64,6 @@ public class TurboLinkedQueueTests
     public void TestPeekIntoEmptyQueue(){
         var myQ = new TurboLinkedQueue<int>();
         CollectionAssert.IsEmpty(myQ);
-        Assert.Throws<Exception>(()=>myQ.Peek());
+        Assert.Throws<EmptyQueueException>(()=>myQ.Peek());
     }
 }
