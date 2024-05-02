@@ -22,7 +22,6 @@ public class TurboLinkedQueueTests
         
         CollectionAssert.IsNotEmpty(myQ);
         CollectionAssert.AreEqual(new []{1,2}, myQ);
-        Assert.That(myQ.FirstNode.Value, Is.EqualTo(1));
     }
     
     [Test]
