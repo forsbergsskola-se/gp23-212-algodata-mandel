@@ -49,17 +49,12 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
             }
             current.Next = newNode;  
         }
-        
-        // This is a bit more complicated. You need to let the last Node in the Queue know who's next after him.
-        // No other choice but looping through your Nodes until you reach the end.
-        // You know that you've reached the end, if the current Node's Next Node is null.
-        // Then, you assign a new Node containing the value to the current node's Next field.
     }
 
     public T Peek()
     {
         if (FirstNode == null)
-            throw new Exception();
+            throw new EmptyQueueException();
         return FirstNode.Value;
     }
 
@@ -89,4 +84,9 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
     {
         return GetEnumerator();
     }
+}
+
+public class EmptyQueueException : Exception
+{
+    public override string Message => "The Stack is empty. Operation not possible.";
 }
