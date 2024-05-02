@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboCollections.Test", "Tu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStateHistory", "GameStateHistory\GameStateHistory.csproj", "{87567645-C04C-4D24-8845-4EC4092353D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyQueue", "SpotifyQueue\SpotifyQueue.csproj", "{FFF2B472-F7B7-492F-9944-614311E0D969}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifySongQueue", "SpotifySongQueue\SpotifySongQueue.csproj", "{FFF2B472-F7B7-492F-9944-614311E0D969}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

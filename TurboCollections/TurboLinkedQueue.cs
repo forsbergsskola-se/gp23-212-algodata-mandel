@@ -3,7 +3,7 @@ using System.Collections;
 namespace TurboCollections;
 
 public interface ITurboQueue<T> : IEnumerable<T> {
-    int Count {get;}// returns the current amount of items contained in the stack.
+    int Count {get;}// returns the current amount of items contained in the queue.
     void Enqueue(T item);// adds one item to the back of the queue.
     T Peek();// returns the item in the front of the queue without removing it.
     T Dequeue();// returns the item in the front of the queue and removes it at the same time.
@@ -21,7 +21,8 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
         get
         {
             int count = 0;
-            while (FirstNode != null)
+            var current = FirstNode;
+            while (current != null)
             {
                 count++;
                 FirstNode = FirstNode.Next;
@@ -36,6 +37,7 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
             Value = value,
             Next = null
         };
+        
         if (FirstNode == null)
         {
             FirstNode = newNode;
@@ -88,5 +90,5 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
 
 public class EmptyQueueException : Exception
 {
-    public override string Message => "The Stack is empty. Operation not possible.";
+    public override string Message => "The Queue is empty. Operation not possible.";
 }
