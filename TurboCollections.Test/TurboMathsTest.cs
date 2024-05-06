@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace TurboCollections.Test;
 
 public static class MathsTests
