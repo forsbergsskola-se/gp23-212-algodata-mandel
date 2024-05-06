@@ -1,14 +1,14 @@
 namespace TurboCollections;
 
-public class TurboSort
+public static class TurboSort
 {
-    public void SelectionSort(List<int> list)
+    public static void SelectionSort(List<int> list)
     {
         int min;
-        for (var i = 0; i < list.Count - 2; i++)
+        for (var i = 0; i < list.Count - 1; i++)
         {
             min = i;
-            for (var j = i + 1; j < list.Count -1 ; j++)
+            for (var j = i + 1; j < list.Count; j++)
             {
                 if (list[j] < list[min])
                 {
