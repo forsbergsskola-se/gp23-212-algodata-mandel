@@ -1,7 +1,6 @@
 namespace TurboCollections.Test;
 
-[TestFixture]
-public static class SelectionSort_Test
+public static class TurboSortTest
 {
     [Test]
     public static void TestSelectionSort()
