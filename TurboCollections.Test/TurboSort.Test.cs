@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace TurboCollections.Test;
 
 public static class TurboSortTest
@@ -35,10 +37,14 @@ public abstract class SortTestBase
 
         var expected = numbers.OrderBy(it => it)
             .ToArray();
+
+        Stopwatch stopwatch = new Stopwatch();
         
-        // start measuring performance
+        stopwatch.Start();
         SortList(numbers);
-        // stop measuring performance
+        stopwatch.Stop();
+        
+        Console.WriteLine(stopwatch.Elapsed);
         
         CollectionAssert.AreEqual(expected, numbers);
     }
