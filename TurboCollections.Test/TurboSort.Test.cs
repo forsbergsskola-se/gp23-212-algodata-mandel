@@ -45,6 +45,7 @@ public abstract class SortTestBase
         stopwatch.Stop();
         
         Console.WriteLine(stopwatch.Elapsed);
+        Console.WriteLine($"Sort Benchmark: {stopwatch.Elapsed:s\\.fffffff}"); // Marc suggested this, but what does it print?
         
         CollectionAssert.AreEqual(expected, numbers);
     }
