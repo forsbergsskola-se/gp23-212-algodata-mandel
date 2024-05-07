@@ -20,6 +20,13 @@ public static class TurboSortTest
         }
     }
     
+    public class QuickSortTests : SortTestBase
+    {
+        protected override void SortList(List<int> list)
+        {
+            TurboSort.QuickSort(list, 0, list.Count -1);
+        }
+    }
 }
 
 public abstract class SortTestBase
@@ -45,8 +52,9 @@ public abstract class SortTestBase
         stopwatch.Stop();
         
         Console.WriteLine(stopwatch.Elapsed);
-        Console.WriteLine($"Sort Benchmark: {stopwatch.Elapsed:s\\.fffffff}"); // Marc suggested this, but what does it print?
-        
+        Console.WriteLine($"Sort Benchmark: {stopwatch.Elapsed:s\\.fffffff}"); 
+        // Marc suggested this, but what does it print?
+        // The ten millionths of a second!!
         CollectionAssert.AreEqual(expected, numbers);
     }
 }
