@@ -1,6 +1,6 @@
 namespace TurboCollections.Test;
 
-public class TurboLinkedStackTests
+public class LinkedTurboLinkedStackTests
 {
     [Test]
     public void TestStackPush()

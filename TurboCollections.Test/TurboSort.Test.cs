@@ -4,7 +4,7 @@ namespace TurboCollections.Test;
 
 public static class TurboSortTest
 { 
-    public class SelectionSortTests : SortTestBase
+    public class SortSelectionSortTests : SortTestBase
     {
         protected override void SortList(List<int> list)
         {
@@ -12,7 +12,7 @@ public static class TurboSortTest
         }
     }
     
-    public class BubbleSortTests : SortTestBase
+    public class SortBubbleSortTests : SortTestBase
     {
         protected override void SortList(List<int> list)
         {
@@ -20,7 +20,7 @@ public static class TurboSortTest
         }
     }
     
-    public class QuickSortTests : SortTestBase
+    public class SortQuickSortTests : SortTestBase
     {
         protected override void SortList(List<int> list)
         {

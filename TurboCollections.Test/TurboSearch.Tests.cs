@@ -4,7 +4,7 @@ namespace TurboCollections.Test;
 
 public class TurboSearchTests
 {
-    public class LinearSearchTests : SearchTestBase
+    public class SearchLinearSearchTests : SearchTestBase
     {
         protected override int SearchList(List<int> list, int value)
         {
@@ -12,7 +12,7 @@ public class TurboSearchTests
         }
     }
 
-    public class BinarySearchTests : SearchTestBase
+    public class SearchBinarySearchTests : SearchTestBase
     {
         protected override int SearchList(List<int> list, int value)
         {
@@ -20,7 +20,7 @@ public class TurboSearchTests
         }
     }
     
-    public class GenericLinearSearchTests : SearchTestBase
+    public class SearchGenericLinearSearchTests : SearchTestBase
     {
         protected override int SearchList(List<int> list, int value)
         {
@@ -28,7 +28,7 @@ public class TurboSearchTests
         }
     }
     
-    public class GenericBinarySearchTests : SearchTestBase
+    public class SearchGenericBinarySearchTests : SearchTestBase
     {
         protected override int SearchList(List<int> list, int value)
         {

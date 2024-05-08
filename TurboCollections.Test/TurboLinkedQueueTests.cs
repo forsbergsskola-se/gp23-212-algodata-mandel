@@ -1,6 +1,6 @@
 namespace TurboCollections.Test;
 
-public class TurboLinkedQueueTests
+public class LinkedTurboLinkedQueueTests
 {
     [Test]
     public void TestQueueCount()
