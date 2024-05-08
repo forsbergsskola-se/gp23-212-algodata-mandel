@@ -20,6 +20,7 @@ public class TurboSearchTests
         }
     }
     
+    /*
     public class SearchGenericLinearSearchTests : SearchTestBase
     {
         protected override int SearchList(List<int> list, int value)
@@ -34,7 +35,8 @@ public class TurboSearchTests
         {
             return TurboSearch.GenericBinarySearch(list, value);
         }
-    }
+    }*/
+    
 }
 
 public abstract class SearchTestBase
@@ -52,13 +54,41 @@ public abstract class SearchTestBase
 
         TurboSort.QuickSort(numbers, 0, numbers.Count -1);
 
+        var timeResults = new List<TimeSpan>();
+
         Stopwatch stopwatch = new Stopwatch();
+
+        for (int i = 0; i < 101; i++)
+        {
+            stopwatch.Start();
+            SearchList(numbers, value);
+            stopwatch.Stop();
+            
+            timeResults.Add(stopwatch.Elapsed);
+        }
         
-        stopwatch.Start();
-        SearchList(numbers, value);
-        stopwatch.Stop();
+        TurboSort.GenericQuickSort(timeResults, 0, timeResults.Count -1);
+        var median = timeResults.ElementAt(50);
+
+        TimeSpan addedResults = default;
+        var resultsCount = 0;
         
-        Console.WriteLine($"Sort Benchmark: {stopwatch.Elapsed:s\\.fffffff}"); 
+        for (int i = 0; i < 100; i++)
+        {
+            var timeResult = timeResults.ElementAt(i);
+            var ratio = Math.Abs(timeResult / median);
+
+            if (ratio is < 1.1f or > 0.9)
+            {
+                addedResults += timeResult;
+                resultsCount++;
+            }
+        }
+
+        var averageResult = addedResults / resultsCount;
+        
+        Console.WriteLine($"The average result for TestCase({count}) was: \n" +
+                          $"{averageResult:s\\.fffffff} ten millionths of a second.");
         
         var result = SearchList(numbers, value);
         if(result == -1)

@@ -53,8 +53,7 @@ public abstract class SortTestBase
         
         Console.WriteLine(stopwatch.Elapsed);
         Console.WriteLine($"Sort Benchmark: {stopwatch.Elapsed:s\\.fffffff}"); 
-        // Marc suggested this, but what does it print?
-        // The ten millionths of a second!!
+        
         CollectionAssert.AreEqual(expected, numbers);
     }
 }
