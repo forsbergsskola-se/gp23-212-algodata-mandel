@@ -33,7 +33,6 @@ public static class TurboSearch
             else if (list[mid] == value)
                 return mid;
         }
-
         return -1;
     }
     
