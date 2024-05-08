@@ -1,23 +1,72 @@
+using System.Diagnostics;
+
 namespace TurboCollections.Test;
 
 public class TurboSearchTests
 {
-    [Test]
-    public void LinearSearchIntTest()
+    public class LinearSearchTests : SearchTestBase
     {
-        var list = new List<int>() { 1, 2, 3, 4, 5, 6 };
-        
-        Assert.That(TurboSearch.LinearSearch(list, 6), Is.EqualTo(5));
-        Assert.That(TurboSearch.LinearSearch(list, 8), Is.EqualTo(-1));
+        protected override int SearchList(List<int> list, int value)
+        {
+            return TurboSearch.LinearSearch(list, value);
+        }
     }
 
-    [Test]
-    public void BinarySearchIntTest()
+    public class BinarySearchTests : SearchTestBase
     {
-        var list = new List<int>() { 1, 2, 3, 4, 5, 6 };
-        
-        Assert.That(TurboSearch.BinarySearch(list, 3), Is.EqualTo(2));
-        Assert.That(TurboSearch.BinarySearch(list, 8), Is.EqualTo(-1));
+        protected override int SearchList(List<int> list, int value)
+        {
+            return TurboSearch.BinarySearch(list, value);
+        }
     }
     
+    public class GenericLinearSearchTests : SearchTestBase
+    {
+        protected override int SearchList(List<int> list, int value)
+        {
+            return TurboSearch.GenericLinearSearch(list, value);
+        }
+    }
+    
+    public class GenericBinarySearchTests : SearchTestBase
+    {
+        protected override int SearchList(List<int> list, int value)
+        {
+            return TurboSearch.GenericBinarySearch(list, value);
+        }
+    }
+}
+
+public abstract class SearchTestBase
+{
+    protected abstract int SearchList(List<int> list, int value);
+    
+    [TestCase(100), TestCase(10), TestCase(100000)]
+    public void TestWithRandomNumbers(int count)
+    {
+        var value = Random.Shared.Next();
+        
+        var numbers = Enumerable.Repeat(0, count)
+            .Select(it => Random.Shared.Next())
+            .ToList();
+
+        TurboSort.QuickSort(numbers, 0, numbers.Count -1);
+
+        Stopwatch stopwatch = new Stopwatch();
+        
+        stopwatch.Start();
+        SearchList(numbers, value);
+        stopwatch.Stop();
+        
+        Console.WriteLine($"Sort Benchmark: {stopwatch.Elapsed:s\\.fffffff}"); 
+        
+        var result = SearchList(numbers, value);
+        if(result == -1)
+            CollectionAssert.DoesNotContain(numbers, value);
+        else
+            Assert.That(numbers[result], Is.EqualTo(value));
+        
+        //Assert.Pass();
+        //Assert.That(stopwatch.Elapsed, Is.LessThan(xx))
+    }
 }
