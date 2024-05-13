@@ -1,7 +1,14 @@
 namespace TurboCollections;
-
-public class TurboBinarySearchTree
+public class TurboBinarySearchTree<T> where T : IEnumerable<T>
 {
+    class Node
+    {
+        public T value;
+        public Node left;
+        public Node right;
+    }
+    
+    
     
 }
 
