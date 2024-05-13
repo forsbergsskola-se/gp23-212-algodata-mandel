@@ -1,6 +1,6 @@
 ## Comparing performance of Linerar and Binary Search Algorithms
 
-Running 101 timed tests searching for a value in a list of random integers (count), displaying the average time for all test times with 10% either side of the median time:
+Running 101 timed tests searching for a value in a list of random integers (count), displaying the average time for all test times within 10% either side of the median time:
 
 ### Test Case (10)
 - Linear
