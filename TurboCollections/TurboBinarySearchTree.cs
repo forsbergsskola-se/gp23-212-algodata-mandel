@@ -1,14 +1,72 @@
+using Microsoft.Win32.SafeHandles;
+
 namespace TurboCollections;
-public class TurboBinarySearchTree<T> where T : IEnumerable<T>
+public class TurboBinarySearchTree<T> where T : IComparable<T>
 {
-    class Node
+   public class Node
     {
-        public T value;
+        public T data;
         public Node left;
         public Node right;
     }
-    
-    
+
+   private Node root;
+   
+   public Node Insert(Node node, T value)
+   {
+      if (root == null)
+      {
+         root = new Node();
+         root.data = value;
+         return root;
+      }
+      else
+      {
+         //If root exists then
+         //    compare the data with node.data
+         //    while until insertion position is located
+         //       If data is greater than node.data
+         //          goto right subtree
+         //       else
+         //          goto left subtree
+         //    endwhile 
+         //    insert data
+         // end If  ????
+      }
+      
+      throw new NotImplementedException();
+   }
+   public Node Search(Node node, T value)
+   {
+      if (root.data.Equals(value))
+      {
+         return root;
+      }
+      throw new NotImplementedException();
+      
+      while (!node.data.Equals(value)) // "while Data not found" 
+      {
+         if (node.data.CompareTo(value) > 0)
+         {
+            // go to right subtree
+         }
+         else if (node.data.CompareTo(value) < 0)
+         {
+            // go to left subtree
+         }
+         else if (node.data.CompareTo(value) == 0)
+         {
+            // return node 
+         }
+         //If there is no subtree
+         // return data not found
+      }
+   }
+   
+   public void Delete(Node node)
+   {
+      throw new NotImplementedException();
+   }
     
 }
 
