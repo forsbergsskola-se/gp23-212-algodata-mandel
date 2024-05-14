@@ -3,11 +3,17 @@ using Microsoft.Win32.SafeHandles;
 namespace TurboCollections;
 public class TurboBinarySearchTree<T> where T : IComparable<T>
 {
-   public class Node
+   private class Node
     {
         public T data;
-        public Node left;
-        public Node right;
+        public Node left, right;
+
+        public Node(T value) 
+        {
+           data = value;
+           left = null;
+           right = null;
+        }
     }
 
    private Node root;
