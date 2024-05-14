@@ -1,6 +1,6 @@
 
 using System.Collections;
-using TurboCollections;
+using System.Xml.Schema;
 
 namespace TurboCollections;
 public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
@@ -73,39 +73,53 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
    public bool Delete(T value)
    {
       Node toDelete = root;
+      Node parent = null;
       while (toDelete != null && !toDelete.data.Equals(value))
       {
+         parent = toDelete;
          if (value.CompareTo(toDelete.data) < 0)
-         {
             toDelete = toDelete.left;
-         }
          else
-         {
             toDelete = toDelete.right;
-         }
       }
 
       if (toDelete == null) // Return false if value doesn't exist in tree
-      {
          return false;
-      }
 
       if (toDelete.left == null && toDelete.right == null) // No children
       {
-         toDelete = null; // This should set parents pointer to null, right?
+         if (toDelete == parent.left)
+            parent.left = null;
+
+         if (toDelete == parent.right)
+            parent.right = null;
       }
       
       // One child
-      else if (toDelete.left == null) // Swap with right child
+      else if (toDelete.left == null && toDelete.right != null) // Swap with right child
       {
-         toDelete = toDelete.right;
-         toDelete.right = null;
+         if (toDelete == parent.left)
+         {
+            parent.left = toDelete.right;
+         }
+
+         if (toDelete == parent.right)
+         {
+            parent.right = toDelete.right;
+         }
       }
 
-      else if (toDelete.right == null) // Swap with left child
+      else if (toDelete.left != null && toDelete.right == null) // Swap with left child
       {
-         toDelete = toDelete.left;
-         toDelete.left = null;
+         if (toDelete == parent.left)
+         {
+            parent.left = toDelete.left;
+         }
+
+         if (toDelete == parent.right)
+         {
+            parent.right = toDelete.left;
+         }
       }
 
       else // has two children
@@ -115,7 +129,17 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
          {
             min = min.left;
          }
-         toDelete = min;
+         if (toDelete == parent.left)
+         {
+            parent.left = min;
+            min.left = toDelete.left;
+         }
+
+         if (toDelete == parent.right)
+         {
+            parent.right = min;
+            min.left = toDelete.left;
+         }
       }
       
       return true;
