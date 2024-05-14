@@ -145,6 +145,22 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
       return true;
    }
 
+   public TurboBinarySearchTree<T> Clone(TurboBinarySearchTree<T> tree)
+   {
+      // use preorder traversal?
+      // Traverse(node n)
+      // Visit(n)
+      // Traverse(n.left)
+      // Traverse(n.right)
+      throw new NotImplementedException();
+   }
+
+   public void DeleteTree(TurboBinarySearchTree<T> tree)
+   {
+      // deletes the tree, but node by node (set the value to 0, then set left to null and right to null)
+      throw new NotImplementedException();
+   }
+
    private IEnumerable<T> TraversInOrder(Node n)
    {
       if (n == null) yield break;
@@ -158,5 +174,19 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
    public IEnumerator GetEnumerator()
    {
       return TraversInOrder(root).GetEnumerator();
+   }
+
+   private IEnumerable<T> TraversInReverseOrder(Node n)
+   {
+      
+      throw new NotImplementedException();
+   }
+   public IEnumerator<T> GetReverseEnumerator()
+   {
+      // Traverse(node n)
+      // Traverse(n.right)
+      // Visit(n)
+      // Traverse(n.left)
+      throw new NotImplementedException();
    }
 }
