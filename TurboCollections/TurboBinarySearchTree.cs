@@ -1,20 +1,20 @@
 
 using System.Collections;
-using System.Xml.Schema;
+
 
 namespace TurboCollections;
 public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
 {
    public class Node
     {
-        public T data;
-        public Node left, right;
+        public T Data;
+        public Node Left, Right;
 
         public Node(T value) 
         {
-           data = value;
-           left = null;
-           right = null;
+           Data = value;
+           Left = null;
+           Right = null;
         }
     }
    private Node root;
@@ -30,25 +30,25 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
 
          while (!leafFound)
          {
-            if (current.data.CompareTo(value) < 0)
+            if (current.Data.CompareTo(value) < 0)
             {
-               if (current.right == null)
+               if (current.Right == null)
                {
-                  current.right = new Node(value);
+                  current.Right = new Node(value);
                   leafFound = true;
                }
                else
-                  current = current.right;
+                  current = current.Right;
             }
-            if (current.data.CompareTo(value) > 0)
+            if (current.Data.CompareTo(value) > 0)
             {
-               if (current.left == null)
+               if (current.Left == null)
                {
-                  current.left = new Node(value);
+                  current.Left = new Node(value);
                   leafFound = true;
                }
                else
-                  current = current.left;
+                  current = current.Left;
             }
          }
       }
@@ -60,12 +60,12 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
 
       while (current != null)
       {
-         if (current.data.CompareTo(value) == 0)
+         if (current.Data.CompareTo(value) == 0)
             return true;
-         if (current.data.CompareTo(value) < 0)
-            current = current.right;
+         if (current.Data.CompareTo(value) < 0)
+            current = current.Right;
          else
-            current = current.left;
+            current = current.Left;
       }
       return false;
    }
@@ -74,71 +74,71 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
    {
       Node toDelete = root;
       Node parent = null;
-      while (toDelete != null && !toDelete.data.Equals(value))
+      while (toDelete != null && !toDelete.Data.Equals(value))
       {
          parent = toDelete;
-         if (value.CompareTo(toDelete.data) < 0)
-            toDelete = toDelete.left;
+         if (value.CompareTo(toDelete.Data) < 0)
+            toDelete = toDelete.Left;
          else
-            toDelete = toDelete.right;
+            toDelete = toDelete.Right;
       }
 
       if (toDelete == null) // Return false if value doesn't exist in tree
          return false;
 
-      if (toDelete.left == null && toDelete.right == null) // No children
+      if (toDelete.Left == null && toDelete.Right == null) // No children
       {
-         if (toDelete == parent.left)
-            parent.left = null;
+         if (toDelete == parent.Left)
+            parent.Left = null;
 
-         if (toDelete == parent.right)
-            parent.right = null;
+         if (toDelete == parent.Right)
+            parent.Right = null;
       }
       
       // One child
-      else if (toDelete.left == null && toDelete.right != null) // Swap with right child
+      else if (toDelete.Left == null && toDelete.Right != null) // Swap with right child
       {
-         if (toDelete == parent.left)
+         if (toDelete == parent.Left)
          {
-            parent.left = toDelete.right;
+            parent.Left = toDelete.Right;
          }
 
-         if (toDelete == parent.right)
+         if (toDelete == parent.Right)
          {
-            parent.right = toDelete.right;
+            parent.Right = toDelete.Right;
          }
       }
 
-      else if (toDelete.left != null && toDelete.right == null) // Swap with left child
+      else if (toDelete.Left != null && toDelete.Right == null) // Swap with left child
       {
-         if (toDelete == parent.left)
+         if (toDelete == parent.Left)
          {
-            parent.left = toDelete.left;
+            parent.Left = toDelete.Left;
          }
 
-         if (toDelete == parent.right)
+         if (toDelete == parent.Right)
          {
-            parent.right = toDelete.left;
+            parent.Right = toDelete.Left;
          }
       }
 
       else // has two children
       {
-         Node min = toDelete.right;
-         while (min.left != null)
+         Node min = toDelete.Right;
+         while (min.Left != null)
          {
-            min = min.left;
+            min = min.Left;
          }
-         if (toDelete == parent.left)
+         if (toDelete == parent.Left)
          {
-            parent.left = min;
-            min.left = toDelete.left;
+            parent.Left = min;
+            min.Left = toDelete.Left;
          }
 
-         if (toDelete == parent.right)
+         if (toDelete == parent.Right)
          {
-            parent.right = min;
-            min.left = toDelete.left;
+            parent.Right = min;
+            min.Left = toDelete.Left;
          }
       }
       
@@ -164,10 +164,10 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
    private IEnumerable<T> TraversInOrder(Node n)
    {
       if (n == null) yield break;
-      foreach (var node in TraversInOrder(n.left))
+      foreach (var node in TraversInOrder(n.Left))
          yield return node;
-      yield return n.data;
-      foreach (var node in TraversInOrder(n.right))
+      yield return n.Data;
+      foreach (var node in TraversInOrder(n.Right))
          yield return node;
    }
    
