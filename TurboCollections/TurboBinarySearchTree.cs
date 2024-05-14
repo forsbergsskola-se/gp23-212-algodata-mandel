@@ -30,25 +30,25 @@ public class TurboBinarySearchTree<T> where T : IComparable<T>
 
          while (!leafFound)
          {
-            if (current.Data.CompareTo(value) < 0)
+            if (current.data.CompareTo(value) < 0)
             {
-               if (current.Right == null)
+               if (current.right == null)
                {
-                  current.Right = new Node(value);
+                  current.right = new Node(value);
                   leafFound = true;
                }
                else
-                  current = current.Right;
+                  current = current.right;
             }
-            if (current.Data.CompareTo(value) > 0)
+            if (current.data.CompareTo(value) > 0)
             {
-               if (current.Left == null)
+               if (current.left == null)
                {
-                  current.Left = new Node(value);
+                  current.left = new Node(value);
                   leafFound = true;
                }
                else
-                  current = current.Left;
+                  current = current.left;
             }
          }
       }
