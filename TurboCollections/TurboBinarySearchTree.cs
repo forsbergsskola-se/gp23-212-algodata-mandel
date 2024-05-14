@@ -1,8 +1,9 @@
 
+using System.Collections;
 using TurboCollections;
 
 namespace TurboCollections;
-public class TurboBinarySearchTree<T> where T : IComparable<T>
+public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
 {
    private class Node
     {
@@ -16,7 +17,6 @@ public class TurboBinarySearchTree<T> where T : IComparable<T>
            right = null;
         }
     }
-
    private Node root;
    
    public void Insert(T value)
@@ -60,12 +60,12 @@ public class TurboBinarySearchTree<T> where T : IComparable<T>
 
       while (current != null)
       {
-         if (current.Data.CompareTo(value) == 0)
+         if (current.data.CompareTo(value) == 0)
             return true;
-         if (current.Data.CompareTo(value) < 0)
-            current = current.Right;
+         if (current.data.CompareTo(value) < 0)
+            current = current.right;
          else
-            current = current.Left;
+            current = current.left;
       }
       return false;
    }
@@ -74,5 +74,20 @@ public class TurboBinarySearchTree<T> where T : IComparable<T>
    {
       throw new NotImplementedException();
    }
-    
+
+   public IEnumerator<T> GetEnumerator()
+   {
+      throw new NotImplementedException();
+   }
+
+   //Traverse(node n)
+   // Traverse(n.left)
+   // Visit(n)
+   // Traverse(n.right)
+   
+   
+   IEnumerator IEnumerable.GetEnumerator()
+   {
+      return GetEnumerator();
+   }
 }
