@@ -18,58 +18,51 @@ public class TurboBinarySearchTree<T> where T : IComparable<T>
 
    private Node root;
    
-   public Node Insert(Node node, T value)
+   public void Insert(T value)
    {
       if (root == null)
+         root = new Node(value);
+
+      Node current = root;
+      Node parent = null;
+      bool isLeaf = false;
+
+      while (!isLeaf)
       {
-         root = new Node();
-         root.data = value;
-         return root;
-      }
-      else
-      {
-         //If root exists then
-         //    compare the data with node.data
-         //    while until insertion position is located
-         //       If data is greater than node.data
-         //          goto right subtree
-         //       else
-         //          goto left subtree
-         //    endwhile 
-         //    insert data
-         // end If  ????
-      }
-      
-      throw new NotImplementedException();
-   }
-   public Node Search(Node node, T value)
-   {
-      if (root.data.Equals(value))
-      {
-         return root;
-      }
-      throw new NotImplementedException();
-      
-      while (!node.data.Equals(value)) // "while Data not found" 
-      {
-         if (node.data.CompareTo(value) > 0)
+         parent = current;
+
+         if (current.data.CompareTo(value) > 0)
          {
-            // go to right subtree
+            //goto right subtree
+            // if current.right == null -> leaf found
          }
-         else if (node.data.CompareTo(value) < 0)
+
+         if (current.data.CompareTo(value) < 0)
          {
-            // go to left subtree
+            // go left
+            // if current.left == null -> leaf found
          }
-         else if (node.data.CompareTo(value) == 0)
-         {
-            // return node 
-         }
-         //If there is no subtree
-         // return data not found
+         // insert data
       }
    }
    
-   public void Delete(Node node)
+   public bool Search(T value)
+   {
+      Node current = root;
+
+      while (current != null)
+      {
+         if (current.data.CompareTo(value) == 0)
+            return true;
+         if (current.data.CompareTo(value) > 0)
+            current = current.right;
+         else
+            current = current.left;
+      }
+      return false;
+   }
+   
+   public bool Delete(T value)
    {
       throw new NotImplementedException();
    }
