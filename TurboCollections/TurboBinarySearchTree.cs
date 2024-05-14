@@ -5,7 +5,7 @@ using TurboCollections;
 namespace TurboCollections;
 public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
 {
-   private class Node
+   public class Node
     {
         public T data;
         public Node left, right;
@@ -72,22 +72,67 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
    
    public bool Delete(T value)
    {
-      throw new NotImplementedException();
+      Node toDelete = root;
+      while (toDelete != null && !toDelete.data.Equals(value))
+      {
+         if (value.CompareTo(toDelete.data) < 0)
+         {
+            toDelete = toDelete.left;
+         }
+         else
+         {
+            toDelete = toDelete.right;
+         }
+      }
+
+      if (toDelete == null) // Return false if value doesn't exist in tree
+      {
+         return false;
+      }
+
+      if (toDelete.left == null && toDelete.right == null) // No children
+      {
+         toDelete = null; // This should set parents pointer to null, right?
+      }
+      
+      // One child
+      else if (toDelete.left == null) // Swap with right child
+      {
+         toDelete = toDelete.right;
+         toDelete.right = null;
+      }
+
+      else if (toDelete.right == null) // Swap with left child
+      {
+         toDelete = toDelete.left;
+         toDelete.left = null;
+      }
+
+      else // has two children
+      {
+         Node min = toDelete.right;
+         while (min.left != null)
+         {
+            min = min.left;
+         }
+         toDelete = min;
+      }
+      
+      return true;
    }
 
-   public IEnumerator<T> GetEnumerator()
+   private IEnumerable<T> TraversInOrder(Node n)
    {
-      throw new NotImplementedException();
+      if (n == null) yield break;
+      foreach (var node in TraversInOrder(n.left))
+         yield return node;
+      yield return n.data;
+      foreach (var node in TraversInOrder(n.right))
+         yield return node;
    }
-
-   //Traverse(node n)
-   // Traverse(n.left)
-   // Visit(n)
-   // Traverse(n.right)
    
-   
-   IEnumerator IEnumerable.GetEnumerator()
+   public IEnumerator GetEnumerator()
    {
-      return GetEnumerator();
+      return TraversInOrder(root).GetEnumerator();
    }
 }
