@@ -1,4 +1,5 @@
-using Microsoft.Win32.SafeHandles;
+
+using TurboCollections;
 
 namespace TurboCollections;
 public class TurboBinarySearchTree<T> where T : IComparable<T>
@@ -22,27 +23,34 @@ public class TurboBinarySearchTree<T> where T : IComparable<T>
    {
       if (root == null)
          root = new Node(value);
-
-      Node current = root;
-      Node parent = null;
-      bool isLeaf = false;
-
-      while (!isLeaf)
+      else
       {
-         parent = current;
+         Node current = root;
+         bool leafFound = false;
 
-         if (current.data.CompareTo(value) > 0)
+         while (!leafFound)
          {
-            //goto right subtree
-            // if current.right == null -> leaf found
+            if (current.Data.CompareTo(value) < 0)
+            {
+               if (current.Right == null)
+               {
+                  current.Right = new Node(value);
+                  leafFound = true;
+               }
+               else
+                  current = current.Right;
+            }
+            if (current.Data.CompareTo(value) > 0)
+            {
+               if (current.Left == null)
+               {
+                  current.Left = new Node(value);
+                  leafFound = true;
+               }
+               else
+                  current = current.Left;
+            }
          }
-
-         if (current.data.CompareTo(value) < 0)
-         {
-            // go left
-            // if current.left == null -> leaf found
-         }
-         // insert data
       }
    }
    
@@ -52,12 +60,12 @@ public class TurboBinarySearchTree<T> where T : IComparable<T>
 
       while (current != null)
       {
-         if (current.data.CompareTo(value) == 0)
+         if (current.Data.CompareTo(value) == 0)
             return true;
-         if (current.data.CompareTo(value) > 0)
-            current = current.right;
+         if (current.Data.CompareTo(value) < 0)
+            current = current.Right;
          else
-            current = current.left;
+            current = current.Left;
       }
       return false;
    }
@@ -68,18 +76,3 @@ public class TurboBinarySearchTree<T> where T : IComparable<T>
    }
     
 }
-
-/*
- Implement a simple Binary Search Tree TurboBinarySearchTree or TurboBinarySearchTree<T> 
- where T:IComparable<T> without Balancing Algorithms. 
- It should have these methods:
-   Insert, Search, Delete,
-   GetEnumerator: returns all items in order, from min to max
-   GetInOrder: same as GetEnumerator
-   GetInReverseOrder: returns all items in reverse order, from max to min
-   Clone: creates a clone of the tree
-   
-Excellent Criteria
-   Delete: deletes the tree, but node by node (set the value to 0, then set left to null and right to null)
-   Implement the Tree using an Array to store all values instead of Node-classes.
-*/
