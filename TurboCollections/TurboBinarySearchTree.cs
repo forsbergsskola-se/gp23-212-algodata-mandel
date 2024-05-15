@@ -154,10 +154,21 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       return newTree;
    }
 
-   public void DeleteTree(TurboBinarySearchTree<T> tree)
+   public void DeleteTree()
    {
-      // deletes the tree, but node by node (set the value to 0, then set left to null and right to null)
-      throw new NotImplementedException();
+      DeleteTree(root);
+      root = null;
+   }
+
+   private void DeleteTree(Node node)
+   {
+      if (node == null) return;
+      DeleteTree(node.Left);
+      DeleteTree(node.Right);
+
+      node.Data = default(T);
+      node.Left = null;
+      node.Right = null;
    }
 
    private IEnumerable<T> TraversInOrder(Node n)
