@@ -11,7 +11,7 @@ public class LinkedTurboLinkedStackTests
         stack.Push(3);
         
         Assert.That(stack, Is.Not.Empty);
-        Assert.That(stack, Is.EqualTo(new []{3,2,1}));
+        Assert.That(stack, Is.EquivalentTo(new []{3,2,1}));
     }
 
     [Test]
