@@ -92,7 +92,7 @@ public abstract class SearchTestBase
         
         var result = SearchList(numbers, value);
         if(result == -1)
-            CollectionAssert.DoesNotContain(numbers, value);
+            Assert.That(numbers, Does.Not.Contain(value));
         else
             Assert.That(numbers[result], Is.EqualTo(value));
         

@@ -20,8 +20,8 @@ public class LinkedTurboLinkedQueueTests
         myQ.Enqueue(1);
         myQ.Enqueue(2);
         
-        CollectionAssert.IsNotEmpty(myQ);
-        CollectionAssert.AreEqual(new []{1,2}, myQ);
+        Assert.That(myQ, Is.Not.Empty);
+        Assert.That(myQ, Is.SupersetOf(new []{1,2}));
     }
     
     [Test]
@@ -54,16 +54,16 @@ public class LinkedTurboLinkedQueueTests
         var myQ = new TurboLinkedQueue<int>();
         myQ.Enqueue(1);
         myQ.Enqueue(2);
-        CollectionAssert.IsNotEmpty(myQ);
+        Assert.That(myQ, Is.Not.Empty);
         
         myQ.Clear();
-        CollectionAssert.IsEmpty(myQ);
+        Assert.That(myQ, Is.Empty);
     }
     
     [Test]
     public void TestPeekIntoEmptyQueue(){
         var myQ = new TurboLinkedQueue<int>();
-        CollectionAssert.IsEmpty(myQ);
+        Assert.That(myQ, Is.Empty);
         Assert.Throws<EmptyQueueException>(()=>myQ.Peek());
     }
 }

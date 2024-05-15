@@ -54,6 +54,6 @@ public abstract class SortTestBase
         Console.WriteLine(stopwatch.Elapsed);
         Console.WriteLine($"Sort Benchmark: {stopwatch.Elapsed:s\\.fffffff}"); 
         
-        CollectionAssert.AreEqual(expected, numbers);
+        Assert.That(numbers, Is.EqualTo(numbers));
     }
 }

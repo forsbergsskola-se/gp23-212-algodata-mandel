@@ -10,8 +10,8 @@ public class LinkedTurboLinkedStackTests
         stack.Push(2);
         stack.Push(3);
         
-        CollectionAssert.IsNotEmpty(stack);
-        CollectionAssert.AreEqual(new []{3,2,1}, stack);
+        Assert.That(stack, Is.Not.Empty);
+        Assert.That(stack, Is.EqualTo(new []{3,2,1}));
     }
 
     [Test]
@@ -31,9 +31,9 @@ public class LinkedTurboLinkedStackTests
         stack.Push(1);
         stack.Push(2);
         stack.Push(3);
-        CollectionAssert.AreEqual(new []{3,2,1}, stack);
+        Assert.That(stack, Is.EqualTo(new []{3,2,1}));
         stack.Pop();
-        CollectionAssert.AreEqual(new []{2,1}, stack);
+        Assert.That(stack, Is.EqualTo(new []{2,1}));
     }
     
     [Test]
@@ -41,9 +41,9 @@ public class LinkedTurboLinkedStackTests
     {
         var stack = new TurboLinkedStack<int>();
         stack.Push(33);
-        CollectionAssert.IsNotEmpty(stack);
+        Assert.That(stack, Is.Not.Empty);
         stack.Clear();
-        CollectionAssert.IsEmpty(stack);
+        Assert.That(stack, Is.Empty);
     }
     
     [Test]
@@ -60,7 +60,7 @@ public class LinkedTurboLinkedStackTests
     [Test]
     public void TestPeekIntoEmptyStack(){
         var stack = new TurboLinkedStack<int>();
-        CollectionAssert.IsEmpty(stack);
+        Assert.That(stack, Is.Empty);
         Assert.Throws<EmptyStackException>(()=>stack.Peek());
     }
 }

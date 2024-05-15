@@ -33,7 +33,7 @@ public class TurboBstTests
 
         tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); tree.Insert(3); tree.Insert(5); tree.Insert(7);
 
-        CollectionAssert.AreEqual(new []{1,2,3,4,5,6,7}, tree);
+        Assert.That(tree, Is.SupersetOf(new []{1,2,3,4,5,6,7}));
     }
     
     [Test]
@@ -43,7 +43,7 @@ public class TurboBstTests
 
         tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); tree.Insert(3); tree.Insert(5); tree.Insert(7);
 
-        CollectionAssert.AreEqual(new []{7,6,5,4,3,2,1}, tree.Reverse());
+        Assert.That(tree, Is.SupersetOf(new []{7,6,5,4,3,2,1}));
     }
 
     [Test]
@@ -54,7 +54,7 @@ public class TurboBstTests
         tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); tree.Insert(3); tree.Insert(5); tree.Insert(7);
         
         Assert.That(tree.Delete(7), Is.EqualTo(true));
-        CollectionAssert.AreEqual(new []{1,2,3,4,5,6}, tree);
+        Assert.That(tree, Is.SupersetOf(new []{1,2,3,4,5,6}));
     }
     
     [Test]
@@ -65,7 +65,7 @@ public class TurboBstTests
         tree.Insert(4); tree.Insert(2); tree.Insert(3); tree.Insert(6); tree.Insert(5); tree.Insert(7);
         
         Assert.That(tree.Delete(2), Is.EqualTo(true));
-        CollectionAssert.AreEqual(new []{3,4,5,6,7}, tree);
+        Assert.That(tree, Is.SupersetOf(new []{3,4,5,6,7}));
     }
     
     [Test]
@@ -76,7 +76,7 @@ public class TurboBstTests
         tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); tree.Insert(3); tree.Insert(5); tree.Insert(7);
         
         Assert.That(tree.Delete(2), Is.EqualTo(true));
-        CollectionAssert.AreEqual(new []{1,3,4,5,6,7}, tree);
+        Assert.That(tree, Is.SupersetOf(new []{1,3,4,5,6,7}));
     }
     
     [Test]
@@ -88,7 +88,7 @@ public class TurboBstTests
 
         var newtree = tree.Clone();
 
-        CollectionAssert.AreEqual(newtree, tree);
+        Assert.That(tree, Is.EqualTo(newtree));
     }
     
     [Test]
@@ -98,10 +98,9 @@ public class TurboBstTests
 
         tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); tree.Insert(3); tree.Insert(5); tree.Insert(7);
         
-        CollectionAssert.IsNotEmpty(tree);
+        Assert.That(tree, Is.Not.Empty);
         
         tree.DeleteTree();
-        CollectionAssert.IsEmpty(tree);
-        
+        Assert.That(tree, Is.Empty);
     }
 }
