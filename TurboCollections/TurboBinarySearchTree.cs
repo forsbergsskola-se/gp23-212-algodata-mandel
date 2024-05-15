@@ -3,7 +3,7 @@ using System.Collections;
 
 
 namespace TurboCollections;
-public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
+public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
 {
    public class Node
     {
@@ -141,7 +141,6 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
             min.Left = toDelete.Left;
          }
       }
-      
       return true;
    }
 
@@ -171,22 +170,25 @@ public class TurboBinarySearchTree<T> : IEnumerable where T : IComparable<T>
          yield return node;
    }
    
-   public IEnumerator GetEnumerator()
+
+   private IEnumerable<T> TraversInReverseOrder(Node n)
+   {
+      if (n == null) yield break;
+      foreach (var node in TraversInReverseOrder(n.Right))
+         yield return node;
+      yield return n.Data;
+      foreach (var node in TraversInReverseOrder(n.Left))
+         yield return node;
+   }
+
+
+   public IEnumerator<T> GetEnumerator() // Strongly typed 
    {
       return TraversInOrder(root).GetEnumerator();
    }
 
-   private IEnumerable<T> TraversInReverseOrder(Node n)
+   IEnumerator IEnumerable.GetEnumerator() 
    {
-      
-      throw new NotImplementedException();
-   }
-   public IEnumerator<T> GetReverseEnumerator()
-   {
-      // Traverse(node n)
-      // Traverse(n.right)
-      // Visit(n)
-      // Traverse(n.left)
-      throw new NotImplementedException();
+      return GetEnumerator();
    }
 }
