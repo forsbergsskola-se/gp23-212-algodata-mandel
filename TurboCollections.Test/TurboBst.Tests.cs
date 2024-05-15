@@ -78,4 +78,16 @@ public class TurboBstTests
         Assert.That(tree.Delete(2), Is.EqualTo(true));
         CollectionAssert.AreEqual(new []{1,3,4,5,6,7}, tree);
     }
+    
+    [Test]
+    public void TestCloningTreeBst()
+    {
+        var tree = new TurboBinarySearchTree<int>();
+
+        tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); tree.Insert(3); tree.Insert(5); tree.Insert(7);
+
+        var newtree = tree.Clone();
+
+        CollectionAssert.AreEqual(newtree, tree);
+    }
 }
