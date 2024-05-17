@@ -8,7 +8,8 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    public class Node
     {
         public T Data;
-        public Node Left, Right;
+        public Node? Left;
+        public Node? Right;
 
         public Node(T value) 
         {
@@ -17,7 +18,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
            Right = null;
         }
     }
-   private Node root;
+   private Node? root;
    
    public void Insert(T value)
    {
@@ -25,7 +26,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
          root = new Node(value);
       else
       {
-         Node current = root;
+         Node? current = root;
          bool leafFound = false;
 
          while (!leafFound)
@@ -56,7 +57,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    
    public bool Search(T value)
    {
-      Node current = root;
+      Node? current = root;
 
       while (current != null)
       {
@@ -72,8 +73,8 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    
    public bool Delete(T value)
    {
-      Node toDelete = root;
-      Node parent = null;
+      Node? toDelete = root;
+      Node? parent = null;
       while (toDelete != null && !toDelete.Data.Equals(value))
       {
          parent = toDelete;
@@ -124,8 +125,8 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
 
       else // has two children
       {
-         Node min = toDelete.Right;
-         Node minParent = toDelete;
+         Node? min = toDelete.Right;
+         Node? minParent = toDelete;
          while (min.Left != null)
          {
             minParent = min;
@@ -166,7 +167,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       root = null;
    }
 
-   private void DeleteTree(Node node)
+   private void DeleteTree(Node? node)
    {
       if (node == null) return;
       DeleteTree(node.Left);
@@ -177,7 +178,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       node.Right = null;
    }
 
-   private IEnumerable<T> TraversInOrder(Node n)
+   private IEnumerable<T> TraversInOrder(Node? n)
    {
       if (n == null) yield break;
       foreach (var node in TraversInOrder(n.Left))
@@ -187,7 +188,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
          yield return node;
    }
    
-   private IEnumerable<T> TraversInReverseOrder(Node n)
+   private IEnumerable<T> TraversInReverseOrder(Node? n)
    {
       if (n == null) yield break;
       foreach (var node in TraversInReverseOrder(n.Right))
@@ -197,7 +198,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
          yield return node;
    }
    
-   private IEnumerable<T> TraversPreorder(Node n)
+   private IEnumerable<T> TraversPreorder(Node? n)
    {
       if (n == null) yield break;
       yield return n.Data;
