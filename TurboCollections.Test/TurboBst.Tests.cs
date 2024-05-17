@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace TurboCollections.Test;
 
 public class TurboBstTests
@@ -59,9 +61,7 @@ public class TurboBstTests
 
         tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); 
         tree.Insert(3); tree.Insert(5); tree.Insert(7);
-
-        var dataInOrder = new List<int>();
-
+        
         
         Assert.That(tree.GetReverseEnumerator(), Is.EquivalentTo(new []{7,6,5,4,3,2,1}));
     }
@@ -153,5 +153,34 @@ public class TurboBstTests
         
         tree.DeleteTree();
         Assert.That(tree, Is.Empty);
+    }
+
+    [Test]
+    public void TestBstWithOtherTs()
+    {
+        var floatTree = new TurboBinarySearchTree<float>();
+        var stringTree = new TurboBinarySearchTree<string>();
+        var charTree = new TurboBinarySearchTree<char>();
+        
+        floatTree.Insert(0.5f); floatTree.Insert(4.5f);
+        stringTree.Insert("hello"); stringTree.Insert("bye");
+        charTree.Insert('b'); charTree.Insert('a'); charTree.Insert('c');
+        
+        Assert.That(floatTree.GetReverseEnumerator(), Is.EquivalentTo(new []{4.5f, 0.5f}));
+        Console.WriteLine("The String tree contains:");
+        foreach (var s in stringTree)
+        {
+            Console.Write($"{s} ");
+        }
+        Console.WriteLine("\nThe Char tree contains:");
+        foreach (var c in charTree)
+        {
+            Console.Write($"{c} ");
+        }
+        Console.WriteLine("\nThe Char tree reversed:");
+        foreach (var r in (IEnumerable)charTree.GetReverseEnumerator())
+        {
+            Console.Write($"{r} ");
+        }
     }
 }
