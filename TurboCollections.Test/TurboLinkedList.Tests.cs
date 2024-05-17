@@ -15,6 +15,47 @@ public class TurboLinkedList_Tests
         {
             Console.Write(i);
         }
-        Assert.That(list, Is.EqualTo(new []{1,3,5}));
+        
+        Assert.That(list, Is.EquivalentTo(new []{1,3,5}));
     }
+
+    [Test]
+    public void TestCount()
+    {
+        var list = new TurboLinkedList<int>();
+        
+        list.Add(1);
+        list.Add(3);
+        list.Add(5);
+        
+        Assert.That(list.Count(), Is.EqualTo(3));
+    }
+    
+    [Test]
+    public void TestRemove()
+    {
+        var list = new TurboLinkedList<int>();
+        
+        list.Add(1);
+        list.Add(2);
+        list.Add(3);
+        
+        list.Remove(2);
+        Assert.That(list, Is.EquivalentTo(new[]{1,3}));
+    }
+    
+    [Test]
+    public void TestRemoveAtIndex()
+    {
+        var list = new TurboLinkedList<int>();
+        
+        list.Add(1);
+        list.Add(2);
+        list.Add(3);
+        
+        list.RemoveAtIndex(1);
+        Assert.That(list, Is.EquivalentTo(new[]{1,3}));
+    }
+    
+    
 }
