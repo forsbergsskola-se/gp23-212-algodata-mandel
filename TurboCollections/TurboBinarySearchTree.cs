@@ -125,21 +125,27 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       else // has two children
       {
          Node min = toDelete.Right;
+         Node minParent = toDelete;
          while (min.Left != null)
          {
+            minParent = min;
             min = min.Left;
          }
-         if (toDelete == parent.Left)
+
+         if (minParent != toDelete)
          {
-            parent.Left = min;
-            min.Left = toDelete.Left;
+            minParent.Left = min.Right;
+            min.Right = toDelete.Right;
          }
 
-         if (toDelete == parent.Right)
-         {
+         min.Left = toDelete.Left;
+
+         if (parent == null) // if deleting the root
+            root = min;
+         else if (toDelete == parent.Left)
+            parent.Left = min;
+         else if (toDelete == parent.Right)
             parent.Right = min;
-            min.Left = toDelete.Left;
-         }
       }
       return true;
    }
