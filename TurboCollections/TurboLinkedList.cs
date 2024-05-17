@@ -96,13 +96,19 @@ public class TurboLinkedList<T> : IEnumerable<T>
     {
         first = null;
     }
+
+    public T Peek()
+    {
+        if (first == null)
+            throw new EmptyListException();
+        return first.Value;
+    }
+
+    public T PeekAtIndex(int index)
+    {
+        throw new NotImplementedException();
+    }
     
-    
-    // Clear/delete
-    // Count
-    // Count a value
-    // Peek
-    // Peek at index
     
     public IEnumerator<T> GetEnumerator()
     {
@@ -119,4 +125,9 @@ public class TurboLinkedList<T> : IEnumerable<T>
     {
         return GetEnumerator();
     }
+}
+
+public class EmptyListException : Exception
+{
+    public override string Message => "The List is empty. Operation not possible.";
 }
