@@ -28,7 +28,7 @@ public class TurboLinkedList_Tests
         list.Add(3);
         list.Add(5);
         
-        Assert.That(list.Count(), Is.EqualTo(3));
+        Assert.That(list.Count, Is.EqualTo(3));
     }
     
     [Test]
@@ -57,5 +57,29 @@ public class TurboLinkedList_Tests
         Assert.That(list, Is.EquivalentTo(new[]{1,3}));
     }
     
+    [Test]
+    public void TestClear()
+    {
+        var list = new TurboLinkedList<int>();
+        
+        list.Add(1);
+        list.Add(2);
+        list.Add(3);
+        
+        Assert.That(list, Is.Not.Empty);
+        list.Clear();
+        Assert.That(list, Is.Empty);
+    }
     
+    [Test]
+    public void TestPeek()
+    {
+        var list = new TurboLinkedList<int>();
+        
+        list.Add(1);
+        list.Add(2);
+        list.Add(3);
+
+        Assert.That(list.Peek(), Is.EqualTo(1));
+    }
 }
