@@ -74,13 +74,13 @@ public class AVLTree
         return y;
     }
 
-    // Get Balance factor of node N  
-    int GetBalance(Node N)
+    // Get Balance factor of node n  
+    int GetBalance(Node n)
     {
-        if (N == null)
+        if (n == null)
             return 0;
 
-        return Height(N.Left) - Height(N.Right);
+        return Height(n.Left) - Height(n.Right);
     }
 
     public Node Insert(Node node, int key)
@@ -106,23 +106,23 @@ public class AVLTree
             unbalanced */
         int balance = GetBalance(node);
 
-        // If this node becomes unbalanced, then there  
-        // are 4 cases Left Left Case  
+        // If this node becomes unbalanced, then there are 4 cases:  
+        // Left-Left Case  
         if (balance > 1 && key < node.Left.Key)
             return RightRotate(node);
 
-        // Right Right Case  
+        // Right-Right Case  
         if (balance < -1 && key > node.Right.Key)
             return LeftRotate(node);
 
-        // Left Right Case  
+        // Left-Right Case  
         if (balance > 1 && key > node.Left.Key)
         {
             node.Left = LeftRotate(node.Left);
             return RightRotate(node);
         }
 
-        // Right Left Case  
+        // Right-Left Case  
         if (balance < -1 && key < node.Right.Key)
         {
             node.Right = RightRotate(node.Right);
