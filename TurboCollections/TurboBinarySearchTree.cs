@@ -58,22 +58,31 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    public bool Search(T value)
    {
       Node? current = root;
-
       while (current != null)
       {
-         if (current.Data.CompareTo(value) == 0)
-            return true;
-         if (current.Data.CompareTo(value) < 0)
-            current = current.Right;
-         else
-            current = current.Left;
+         switch (current.Data.CompareTo(value))
+         {
+            case 0: 
+               return true;
+            case < 0:
+               current = current.Right;
+               break;
+            default:
+               current = current.Left;
+               break;
+         }
       }
       return false;
    }
-   
+
    public bool Delete(T value)
    {
-      Node? toDelete = root;
+      return DeleteHelper(root, value);
+   }
+   
+   private bool DeleteHelper(Node node,T value)
+   {
+      Node? toDelete = node;
       Node? parent = null;
       while (toDelete != null && !toDelete.Data.Equals(value))
       {
