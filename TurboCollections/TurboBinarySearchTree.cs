@@ -80,7 +80,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       return root != null && DeleteHelper(root, value, out root);
    }
 
-   private bool DeleteHelper(Node? node, T value, out Node toDelete)
+   private bool DeleteHelper(Node? node, T value, out Node toDelete) // out Node to update the tree
    {
       if (node == null)
       {
@@ -95,14 +95,13 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
          toDelete = node;
          return result;
       }
-
       if (compareResult > 0)
       {
          var result = DeleteHelper(node.Right, value, out node.Right);
-         toDelete = node;
+         toDelete = node; 
          return result;
       }
-
+      
       if (node.Left == null && node.Right == null) // No children
       {
          toDelete = null;
@@ -117,9 +116,21 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       }
       else // two children
       {
+         var swap = FindMin(node.Right);
+         node.Data = swap.Data;
+         DeleteHelper(node.Right, swap.Data, out node.Right);
+         toDelete = node;
       }
+      return true;
+   }
 
-      throw new NotImplementedException();
+   private Node FindMin(Node node)
+   {
+      while (node.Left != null)
+      {
+         node = node.Left;
+      }
+      return node;
    }
 
    public TurboBinarySearchTree<T> Clone()
