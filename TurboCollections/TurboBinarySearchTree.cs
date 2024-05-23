@@ -28,9 +28,9 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
 
    private void InsertHelper(Node node, T value)
    {
-      if (node == null)
+      if (root == null)
       {
-         node = new Node(value);
+         root = new Node(value);
       }
 
       else if (node.Data.CompareTo(value) < 0)
@@ -44,7 +44,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
             InsertHelper(node.Right, value);
          }
       }
-      if (node.Data.CompareTo(value) > 0)
+      else
       {
          if (node.Left == null)
          {
