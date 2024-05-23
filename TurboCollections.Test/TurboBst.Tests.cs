@@ -5,20 +5,6 @@ namespace TurboCollections.Test;
 public class TurboBstTests
 {
     [Test]
-    public void TestBalanceBst()
-    {
-        var tree = new TurboBinarySearchTree<int>();
-        
-        tree.Insert(10);
-        tree.Insert(20);
-        tree.Insert(30);
-        tree.Insert(40);
-        tree.Insert(50);
-        tree.Insert(25);
-        
-        Assert.Pass();
-    }
-    [Test]
     public void TestInsertBst()
     {
         var tree = new TurboBinarySearchTree<int>();
