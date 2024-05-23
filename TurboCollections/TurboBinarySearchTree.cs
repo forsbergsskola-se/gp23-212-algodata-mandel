@@ -22,36 +22,36 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    
    public void Insert(T value)
    {
-      if (root == null)
-         root = new Node(value);
-      else
-      {
-         Node? current = root;
-         bool leafFound = false;
+      InsertHelper(root, value);
+      
+   }
 
-         while (!leafFound)
+   private void InsertHelper(Node node, T value)
+   {
+      if (node == null)
+      {
+         node = new Node(value);
+      }
+
+      else if (node.Data.CompareTo(value) < 0)
+      {
+         if (node.Right == null)
          {
-            if (current.Data.CompareTo(value) < 0)
-            {
-               if (current.Right == null)
-               {
-                  current.Right = new Node(value);
-                  leafFound = true;
-               }
-               else
-                  current = current.Right;
-            }
-            if (current.Data.CompareTo(value) > 0)
-            {
-               if (current.Left == null)
-               {
-                  current.Left = new Node(value);
-                  leafFound = true;
-               }
-               else
-                  current = current.Left;
-            }
+            node.Right = new Node(value);
          }
+         else
+         {
+            InsertHelper(node.Right, value);
+         }
+      }
+      if (node.Data.CompareTo(value) > 0)
+      {
+         if (node.Left == null)
+         {
+            node.Left = new Node(value);
+         }
+         else
+            InsertHelper(node.Left, value);
       }
    }
    
