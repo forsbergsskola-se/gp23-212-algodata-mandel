@@ -77,87 +77,49 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
 
    public bool Delete(T value)
    {
-      return DeleteHelper(root, value);
+      return root != null && DeleteHelper(root, value, out root);
    }
-   
-   private bool DeleteHelper(Node node,T value)
+
+   private bool DeleteHelper(Node? node, T value, out Node toDelete)
    {
-      Node? toDelete = node;
-      Node? parent = null;
-      while (toDelete != null && !toDelete.Data.Equals(value))
+      if (node == null)
       {
-         parent = toDelete;
-         if (value.CompareTo(toDelete.Data) < 0)
-            toDelete = toDelete.Left;
-         else
-            toDelete = toDelete.Right;
-      }
-
-      if (toDelete == null) // Return false if value doesn't exist in tree
+         toDelete = null;
          return false;
-
-      if (toDelete.Left == null && toDelete.Right == null) // No children
-      {
-         if (toDelete == parent.Left)
-            parent.Left = null;
-
-         if (toDelete == parent.Right)
-            parent.Right = null;
-      }
-      
-      // One child
-      else if (toDelete.Left == null && toDelete.Right != null) // Swap with right child
-      {
-         if (toDelete == parent.Left)
-         {
-            parent.Left = toDelete.Right;
-         }
-
-         if (toDelete == parent.Right)
-         {
-            parent.Right = toDelete.Right;
-         }
       }
 
-      else if (toDelete.Left != null && toDelete.Right == null) // Swap with left child
+      var compareResult = value.CompareTo(node.Data);
+      if (compareResult < 0)
       {
-         if (toDelete == parent.Left)
-         {
-            parent.Left = toDelete.Left;
-         }
-
-         if (toDelete == parent.Right)
-         {
-            parent.Right = toDelete.Left;
-         }
+         var result = DeleteHelper(node.Left, value, out node.Left);
+         toDelete = node;
+         return result;
       }
 
-      else // has two children
+      if (compareResult > 0)
       {
-         Node? min = toDelete.Right;
-         Node? minParent = toDelete;
-         while (min.Left != null)
-         {
-            minParent = min;
-            min = min.Left;
-         }
-
-         if (minParent != toDelete)
-         {
-            minParent.Left = min.Right;
-            min.Right = toDelete.Right;
-         }
-
-         min.Left = toDelete.Left;
-
-         if (parent == null) // if deleting the root
-            root = min;
-         else if (toDelete == parent.Left)
-            parent.Left = min;
-         else if (toDelete == parent.Right)
-            parent.Right = min;
+         var result = DeleteHelper(node.Right, value, out node.Right);
+         toDelete = node;
+         return result;
       }
-      return true;
+
+      if (node.Left == null && node.Right == null) // No children
+      {
+         toDelete = null;
+      }
+      else if (node.Left == null) // one child left/right
+      {
+         toDelete = node.Right;
+      }
+      else if (node.Right == null)
+      {
+         toDelete = node.Left;
+      }
+      else // two children
+      {
+      }
+
+      throw new NotImplementedException();
    }
 
    public TurboBinarySearchTree<T> Clone()
