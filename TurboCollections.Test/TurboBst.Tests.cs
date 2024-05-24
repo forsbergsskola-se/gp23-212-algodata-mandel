@@ -175,12 +175,8 @@ public class TurboBstTests
     public void TestGetBalanceOfTree()
     {
         var tree = new TurboBinarySearchTree<int>();
-
-        for (int i = 0; i < 5; i++)
-        {
-            tree.Insert(i);
-        }
-        tree.Insert(5);
+        
+        tree.Insert(2); tree.Insert(1); tree.Insert(3); tree.Insert(4); tree.Insert(5);
         
         Assert.Pass();
         
