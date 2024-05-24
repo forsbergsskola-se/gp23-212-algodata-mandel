@@ -8,22 +8,28 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    public class Node
     {
         public T Data;
+        public int Height;
         public Node? Left;
         public Node? Right;
 
         public Node(T value) 
         {
            Data = value;
+           Height = 0;
            Left = null;
            Right = null;
         }
     }
    private Node? root;
    
+   private static int Height(Node n)
+   {
+      return n == null ? 0 : n.Height;
+   }
+   
    public void Insert(T value)
    {
       InsertHelper(root, value);
-      
    }
 
    private void InsertHelper(Node node, T value)
