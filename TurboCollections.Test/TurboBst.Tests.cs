@@ -170,4 +170,19 @@ public class TurboBstTests
             Console.Write($"{r} ");
         }
     }
+
+    [Test]
+    public void TestGetBalanceOfTree()
+    {
+        var tree = new TurboBinarySearchTree<int>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            tree.Insert(i);
+        }
+        tree.Insert(5);
+        
+        Assert.Pass();
+        
+    }
 }
