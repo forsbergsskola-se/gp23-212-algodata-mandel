@@ -15,16 +15,18 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
         public Node(T value) 
         {
            Data = value;
-           Height = 0;
+           Height = 1;
            Left = null;
            Right = null;
         }
     }
    private Node? root;
    
-   private static int Height(Node n)
+   private static int GetHeight(Node? n)
    {
-      return n == null ? 0 : n.Height;
+      if (n == null)
+         return 0;
+      return n.Height;
    }
    private int Max(int a, int b)
    {
