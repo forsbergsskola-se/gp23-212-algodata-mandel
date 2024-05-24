@@ -26,6 +26,10 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    {
       return n == null ? 0 : n.Height;
    }
+   private int Max(int a, int b)
+   {
+      return (a > b) ? a : b;
+   }
    
    public void Insert(T value)
    {
