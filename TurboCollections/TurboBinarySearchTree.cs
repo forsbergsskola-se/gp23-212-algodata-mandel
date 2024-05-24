@@ -59,6 +59,9 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
          else
             InsertHelper(node.Left, value);
       }
+      
+      // Update heights of inserted node: H(node) = Max(H(LeftSubTree), H(RightSubTree)) +1
+      // Get balance of tree:             B(H) = H(LeftSubTree) - H(RightSubTree)
    }
    
    public bool Search(T value)
