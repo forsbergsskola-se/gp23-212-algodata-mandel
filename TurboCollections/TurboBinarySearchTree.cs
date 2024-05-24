@@ -24,13 +24,16 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    
    private static int GetHeight(Node? n)
    {
-      if (n == null)
-         return 0;
-      return n.Height;
+      return n == null ? 0 : n.Height;
    }
-   private int Max(int a, int b)
+   private static int Max(int a, int b)
    {
       return (a > b) ? a : b;
+   }
+
+   private static int GetBalance(Node? n)
+   {
+      return n == null ? 0 : GetHeight(n.Left) - GetHeight(n.Right);
    }
    
    public void Insert(T value)
@@ -66,18 +69,14 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
          else
             InsertHelper(node.Left, value);
       }
-      else
-      {
-         return node;
-      }
       
-      node.Height = Max(GetHeight(node.Left), GetHeight(node.Right)) + 1;
+      // Update height of inserted node: H(node) = Max(H(LeftSubTree), H(RightSubTree)) +1
+      node.Height = Max(GetHeight(node.Left), GetHeight(node.Right)) +1;
       
+      // Get balance of tree: B(H) = H(LeftSubTree) - H(RightSubTree)
+      var balance = GetBalance(node);
+      Console.WriteLine(balance);
       
-      
-
-      // Update heights of inserted node: H(node) = Max(H(LeftSubTree), H(RightSubTree)) +1
-      // Get balance of tree:             B(H) = H(LeftSubTree) - H(RightSubTree)
       // Check if tree needs rotating:    ABS(B(H)) <= 1 ? 
       // If Left heavy  -> Right or Right-Left rotate
       // If Right heavy -> Left or Left-Right rotate
