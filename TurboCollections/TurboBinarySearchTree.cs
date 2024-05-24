@@ -38,14 +38,15 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       InsertHelper(root, value);
    }
 
-   private void InsertHelper(Node node, T value)
+   private Node InsertHelper(Node? node, T value)
    {
       if (root == null)
       {
          root = new Node(value);
+         return root;
       }
 
-      else if (node.Data.CompareTo(value) < 0)
+      if (node.Data.CompareTo(value) < 0)
       {
          if (node.Right == null)
          {
@@ -56,7 +57,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
             InsertHelper(node.Right, value);
          }
       }
-      else
+      if (node.Data.CompareTo(value) > 0)
       {
          if (node.Left == null)
          {
@@ -65,12 +66,22 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
          else
             InsertHelper(node.Left, value);
       }
+      else
+      {
+         return node;
+      }
       
+      node.Height = Max(GetHeight(node.Left), GetHeight(node.Right)) + 1;
+      
+      
+      
+
       // Update heights of inserted node: H(node) = Max(H(LeftSubTree), H(RightSubTree)) +1
       // Get balance of tree:             B(H) = H(LeftSubTree) - H(RightSubTree)
       // Check if tree needs rotating:    ABS(B(H)) <= 1 ? 
       // If Left heavy  -> Right or Right-Left rotate
       // If Right heavy -> Left or Left-Right rotate
+      return node;
    }
    
    public bool Search(T value)
