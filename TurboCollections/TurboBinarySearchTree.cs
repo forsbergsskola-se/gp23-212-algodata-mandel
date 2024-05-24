@@ -62,6 +62,9 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       
       // Update heights of inserted node: H(node) = Max(H(LeftSubTree), H(RightSubTree)) +1
       // Get balance of tree:             B(H) = H(LeftSubTree) - H(RightSubTree)
+      // Check if tree needs rotating:    ABS(B(H)) <= 1 ? 
+      // If Left heavy  -> Right or Right-Left rotate
+      // If Right heavy -> Left or Left-Right rotate
    }
    
    public bool Search(T value)
