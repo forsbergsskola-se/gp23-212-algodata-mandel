@@ -105,14 +105,29 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       
       // Get balance of tree: B(H) = H(LeftSubTree) - H(RightSubTree)
       var balance = GetBalance(node);
-      Console.WriteLine($"Node:{node.Data} has the balance {balance}");
-      
+
       // Check if tree needs rotating:    ABS(B(H)) <= 1 ? 
+      if (balance > 1 && node.Left.Data.CompareTo(value) > 0)
+      {
+         return RightRotate(node);
+      }
       
-      // If Left heavy  -> Right or Right-Left rotate
+      if (balance < -1 && node.Right.Data.CompareTo(value) < 0)
+      {
+         return LeftRotate(node);
+      }
       
-      // If Right heavy -> Left or Left-Right rotate
+      if (balance > 1 && node.Left.Data.CompareTo(value) < 0)
+      {
+         node.Left = LeftRotate(node.Left);
+         return RightRotate(node);
+      }
       
+      if (balance < -1 && node.Right.Data.CompareTo(value) > 0)
+      {
+         node.Right = RightRotate(node.Right);
+         return LeftRotate(node);
+      }
       return node;
    }
    
