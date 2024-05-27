@@ -43,7 +43,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       var z = x.Right;
       
       x.Right = y;
-      y.Left = z;
+      y.Left = z; // Can be null... ??
       
       y.Height = Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
       x.Height = Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
@@ -58,7 +58,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       Node z = y.Left;
       
       y.Left = x;
-      x.Right = z;
+      x.Right = z; // can be null... ??
       
       x.Height = Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
       y.Height = Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
