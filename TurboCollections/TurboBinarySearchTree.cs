@@ -36,6 +36,36 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       return n == null ? 0 : GetHeight(n.Left) - GetHeight(n.Right);
    }
    
+   private Node RightRotate(Node y)
+   {
+      // Right rotate node y, place x as new root of subtree and z as y.left
+      var x = y.Left;
+      var z = x.Right;
+      
+      x.Right = y;
+      y.Left = z;
+      
+      y.Height = Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
+      x.Height = Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
+      
+      return x;
+   }
+   
+   private Node LeftRotate(Node x)
+   {
+      // Left rotate node x, place y as new root of subtree and z as x.right
+      Node y = x.Right;
+      Node z = y.Left;
+      
+      y.Left = x;
+      x.Right = z;
+      
+      x.Height = Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
+      y.Height = Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
+      
+      return y;
+   }
+   
    public void Insert(T value)
    {
       InsertHelper(root, value);
