@@ -172,13 +172,15 @@ public class TurboBstTests
     }
 
     [Test]
-    public void TestGetBalanceOfTree()
+    public void TestBalancingRightHeavyTree()
     {
         var tree = new TurboBinarySearchTree<int>();
         
-        tree.Insert(2); tree.Insert(1); tree.Insert(3); tree.Insert(4); tree.Insert(5);
-        // cant access GetHeight ... 
-        Assert.Pass();
+        tree.Insert(1); 
+        tree.Insert(2); 
+        tree.Insert(3); 
         
+        Assert.That(tree.GetHeight(tree.root), Is.EqualTo(2));
+        // refactor code and update tests
     }
 }
