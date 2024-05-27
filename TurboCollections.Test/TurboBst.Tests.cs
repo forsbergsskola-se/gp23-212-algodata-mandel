@@ -177,7 +177,7 @@ public class TurboBstTests
         var tree = new TurboBinarySearchTree<int>();
         
         tree.Insert(2); tree.Insert(1); tree.Insert(3); tree.Insert(4); tree.Insert(5);
-        
+        // cant access GetHeight ... 
         Assert.Pass();
         
     }

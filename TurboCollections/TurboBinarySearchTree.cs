@@ -21,7 +21,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
         }
     }
    private Node? root;
-   
+
    private static int GetHeight(Node? n)
    {
       return n == null ? 0 : n.Height;
