@@ -280,6 +280,22 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    {
       return GetEnumerator();
    }
+   
+   public void PrintTree()
+   {
+      PrintTreeHelper(root, "", true);
+   }
+
+   private void PrintTreeHelper(Node? node, string indent, bool isLast) // Got this to visualise the tree structure
+   {
+      if (node != null)
+      {
+         Console.WriteLine(indent + (isLast ? "└── " : "├── ") + node.Data);
+         indent += isLast ? "    " : "│   ";
+         PrintTreeHelper(node.Left, indent, false);
+         PrintTreeHelper(node.Right, indent, true);
+      }
+   }
 }
 
 // Left Rotation: When a node becomes unbalanced with a balance factor of -2, and its right child has a balance factor of -1 or 0.
