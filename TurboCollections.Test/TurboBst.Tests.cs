@@ -26,6 +26,8 @@ public class TurboBstTests
         tree.Insert(4); tree.Insert(5); tree.Insert(6); 
         
         Assert.That(tree.GetTreeHeight(), Is.EqualTo(2));
+        Console.WriteLine("Inserted 4 - 5 - 3 -> Left rotation on 5;");
+        tree.PrintTree();
     }
     
     [Test]
@@ -36,6 +38,8 @@ public class TurboBstTests
         tree.Insert(3); tree.Insert(2); tree.Insert(1); 
         
         Assert.That(tree.GetTreeHeight(), Is.EqualTo(2));
+        Console.WriteLine("Inserted 3 - 2 - 1 -> Right rotation on 2;");
+        tree.PrintTree();
     }
     
     [Test]
@@ -46,6 +50,8 @@ public class TurboBstTests
         tree.Insert(3); tree.Insert(1); tree.Insert(2); 
         
         Assert.That(tree.GetTreeHeight(), Is.EqualTo(2));
+        Console.WriteLine("Inserted 3 - 1 - 2 -> Left-Right rotation;");
+        tree.PrintTree();
     }
     
     [Test]
@@ -56,6 +62,8 @@ public class TurboBstTests
         tree.Insert(3); tree.Insert(5); tree.Insert(4); 
         
         Assert.That(tree.GetTreeHeight(), Is.EqualTo(2));
+        Console.WriteLine("Inserted 3 - 5 - 4 -> Right-Left rotation;");
+        tree.PrintTree();
     }
     
 
@@ -103,7 +111,7 @@ public class TurboBstTests
         }
         
         Assert.That(tree.GetReverseEnumerator(), Is.EquivalentTo(new []{10,9,8,7,6,5,4,3,2,1}));
-        Console.WriteLine("The tree reversed:");
+        Console.WriteLine("The tree in reversed order:");
         foreach (var n in (IEnumerable)tree.GetReverseEnumerator())
         {
             Console.Write($"{n} ");
