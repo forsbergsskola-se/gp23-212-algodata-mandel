@@ -285,4 +285,4 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    {
       return GetEnumerator();
    }
-}
+}// Left Rotation: When a node becomes unbalanced with a balance factor of -2, and its right child has a balance factor of -1 or 0.// Right Rotation: When a node becomes unbalanced with a balance factor of 2, and its left child has a balance factor of 1 or 0.// Left-Right Rotation: When a node becomes unbalanced with a balance factor of 2, and its left child has a balance factor of -1.// Right-Left Rotation: When a node becomes unbalanced with a balance factor of -2, and its right child has a balance factor of 1.
