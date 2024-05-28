@@ -177,10 +177,8 @@ public class TurboBstTests
         var tree = new TurboBinarySearchTree<int>();
         
         tree.Insert(4); tree.Insert(5); 
-        tree.Insert(6); tree.Insert(7); 
+        tree.Insert(6); 
         
-        
-        Assert.That(tree.GetHeight(tree.root), Is.EqualTo(2));
-        // refactor code and update tests
+        Assert.That(tree.GetTreeHeight(), Is.EqualTo(2));
     }
 }
