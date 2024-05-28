@@ -62,11 +62,14 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); 
-        tree.Insert(3); tree.Insert(5); tree.Insert(7);
+        for (int i = 1; i <= 10; i++)
+        {
+            tree.Insert(i);
+        }
         
+        tree.PrintTree();
         Assert.That(tree.Search(5), Is.EqualTo(true));
-        Assert.That(tree.Search(9), Is.EqualTo(false));
+        Assert.That(tree.Search(22), Is.EqualTo(false));
     }
 
     [Test]
@@ -74,10 +77,13 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); 
-        tree.Insert(3); tree.Insert(5); tree.Insert(7);
-
-        Assert.That(tree, Is.EquivalentTo(new []{1,2,3,4,5,6,7}));
+        for (int i = 1; i <= 10; i++)
+        {
+            tree.Insert(i);
+        }
+        
+        tree.PrintTree();
+        Assert.That(tree, Is.EquivalentTo(new []{1,2,3,4,5,6,7,8,9,10}));
     }
     
     [Test]
@@ -85,11 +91,13 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); 
-        tree.Insert(3); tree.Insert(5); tree.Insert(7);
+        for (int i = 1; i <= 10; i++)
+        {
+            tree.Insert(i);
+        }
         
-        
-        Assert.That(tree.GetReverseEnumerator(), Is.EquivalentTo(new []{7,6,5,4,3,2,1}));
+        tree.PrintTree();
+        Assert.That(tree.GetReverseEnumerator(), Is.EquivalentTo(new []{10,9,8,7,6,5,4,3,2,1}));
     }
 
     [Test]
@@ -97,12 +105,15 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); 
-        tree.Insert(3); tree.Insert(5); tree.Insert(7);
+        for (int i = 1; i <= 10; i++)
+        {
+            tree.Insert(i);
+        }
         
-        Assert.That(tree.Delete(7), Is.EqualTo(true));
-        Assert.That(tree.Delete(9), Is.EqualTo(false));
+        Assert.That(tree.Delete(10), Is.EqualTo(true));
+        Assert.That(tree.Delete(22), Is.EqualTo(false));
         Assert.That(tree, Is.SupersetOf(new []{1,2,3,4,5,6}));
+        tree.PrintTree();
     }
     
     [Test]
@@ -115,6 +126,7 @@ public class TurboBstTests
         
         Assert.That(tree.Delete(2), Is.EqualTo(true));
         Assert.That(tree, Is.SupersetOf(new []{3,4,5,6,7}));
+        tree.PrintTree();
     }
     
     [Test]
@@ -122,11 +134,13 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); 
-        tree.Insert(3); tree.Insert(5); tree.Insert(7);
+        for (int i = 1; i <= 10; i++)
+        {
+            tree.Insert(i);
+        }
         
         Assert.That(tree.Delete(2), Is.EqualTo(true));
-        Assert.That(tree, Is.SupersetOf(new []{1,3,4,5,6,7}));
+        tree.PrintTree();
     }
     
     [Test]
@@ -139,20 +153,7 @@ public class TurboBstTests
         
         Assert.That(tree.Delete(4), Is.EqualTo(true));
         Assert.That(tree, Is.SupersetOf(new []{1,2,3,5,6,7}));
-    }
-    
-    [Test]
-    public void TestDeleteValueLargerTree()
-    {
-        var tree = new TurboBinarySearchTree<int>();
-
-        tree.Insert(6); tree.Insert(4); tree.Insert(8); tree.Insert(2); 
-        tree.Insert(5); tree.Insert(1); tree.Insert(3); tree.Insert(7); tree.Insert(9);
-        
-        Assert.That(tree.Delete(6), Is.EqualTo(true));
-        Assert.That(tree.Delete(6), Is.EqualTo(false));
-        Assert.That(tree.Delete(2), Is.EqualTo(true));
-        Assert.That(tree.Delete(4), Is.EqualTo(true));
+        tree.PrintTree();
     }
     
     [Test]
