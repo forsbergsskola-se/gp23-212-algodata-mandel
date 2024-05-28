@@ -9,7 +9,7 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        for (int i = 1; i <= 10; i++)
+        for (var i = 1; i <= 10; i++)
         {
             tree.Insert(i);
         }
@@ -72,7 +72,7 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        for (int i = 1; i <= 10; i++)
+        for (var i = 1; i <= 10; i++)
         {
             tree.Insert(i);
         }
@@ -87,7 +87,7 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        for (int i = 1; i <= 10; i++)
+        for (var i = 1; i <= 10; i++)
         {
             tree.Insert(i);
         }
@@ -105,7 +105,7 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        for (int i = 1; i <= 10; i++)
+        for (var i = 1; i <= 10; i++)
         {
             tree.Insert(i);
         }
@@ -123,7 +123,7 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        for (int i = 1; i <= 10; i++)
+        for (var i = 1; i <= 10; i++)
         {
             tree.Insert(i);
         }
@@ -142,7 +142,7 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        for (int i = 1; i <= 10; i++)
+        for (var i = 1; i <= 10; i++)
         {
             tree.Insert(i);
         }
@@ -159,7 +159,7 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        for (int i = 1; i <= 10; i++)
+        for (var i = 1; i <= 10; i++)
         {
             tree.Insert(i);
         }
@@ -176,7 +176,7 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        for (int i = 1; i <= 10; i++)
+        for (var i = 1; i <= 10; i++)
         {
             tree.Insert(i);
         }
@@ -256,15 +256,14 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        for (int i = 1; i <= 100; i++)
+        for (var i = 1; i <= 100; i++)
         {
             tree.Insert(i);
         }
 
-        // The height of the balanced tree is O(log(n))
-        // "Using the relationship between Fibonacci numbers and the golden ratio (≈1.618)"
-        // The height for a tree with 100 nodes is ≈7.6 -> as an int = 8.
-        Assert.That(tree.GetTreeHeight(), Is.EqualTo(8).Within(1)); // Allowing a margin of 1 for variations
+        // The height of the balanced tree is O(log(n)) 
+        Console.WriteLine($"A tree with 100 nodes has a height of ≈ {Math.Ceiling(MathF.Log2(100))}");
+        Assert.That(tree.GetTreeHeight(), Is.EqualTo(MathF.Log2(100)).Within(1)); // Allowing a margin of 1 for variations
     }
     
     [Test]
@@ -272,11 +271,26 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        for (int i = 1; i <= 1000; i++)
+        for (var i = 1; i <= 1000; i++)
         {
             tree.Insert(i);
         }
         
-        Assert.That(tree.GetTreeHeight(), Is.EqualTo(10).Within(1));
+        Console.WriteLine($"A tree with 1000 nodes has a height of ≈ {Math.Ceiling(MathF.Log2(1000))}");
+        Assert.That(tree.GetTreeHeight(), Is.EqualTo(MathF.Log2(1000)).Within(1));
+    }
+    
+    [Test]
+    public void TestBalancingTreeWith100000Nodes()
+    {
+        var tree = new TurboBinarySearchTree<int>();
+
+        for (var i = 1; i <= 100000; i++)
+        {
+            tree.Insert(i);
+        }
+        
+        Console.WriteLine($"A tree with 100 000 nodes has a height of ≈ {Math.Ceiling(MathF.Log2(100000))}");
+        Assert.That(tree.GetTreeHeight(), Is.EqualTo(MathF.Log2(100000)).Within(1));
     }
 }
