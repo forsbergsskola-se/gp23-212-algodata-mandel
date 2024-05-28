@@ -43,7 +43,7 @@ public class TurboBstTests
     }
     
     [Test]
-    public void TestLeftRightBalancingTree()
+    public void TestBalancingLeftRightTree()
     {
         var tree = new TurboBinarySearchTree<int>();
         
@@ -55,7 +55,7 @@ public class TurboBstTests
     }
     
     [Test]
-    public void TestRightLeftBalancingTree()
+    public void TestBalancingRightLeftTree()
     {
         var tree = new TurboBinarySearchTree<int>();
         
@@ -109,8 +109,7 @@ public class TurboBstTests
         {
             tree.Insert(i);
         }
-        
-        Assert.That(tree.GetReverseEnumerator(), Is.EquivalentTo(new []{10,9,8,7,6,5,4,3,2,1}));
+        Assert.That(tree, Is.EquivalentTo(new []{10,9,8,7,6,5,4,3,2,1}));
         Console.WriteLine("The tree in reversed order:");
         foreach (var n in (IEnumerable)tree.GetReverseEnumerator())
         {
@@ -182,10 +181,10 @@ public class TurboBstTests
             tree.Insert(i);
         }
         
-        Console.WriteLine("Tree before deleting 2:");
+        Console.WriteLine("Tree before deleting 8:");
         tree.PrintTree();
-        Assert.That(tree.Delete(2), Is.EqualTo(true));
-        Console.WriteLine("Tree after deleting 2:");
+        Assert.That(tree.Delete(8), Is.EqualTo(true));
+        Console.WriteLine("Tree after deleting 8:");
         tree.PrintTree();
     }
     
@@ -211,8 +210,10 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); 
-        tree.Insert(3); tree.Insert(5); tree.Insert(7);
+        for (var i = 1; i <= 7; i++)
+        {
+            tree.Insert(i);
+        }
 
         var newTree = tree.Clone();
 
@@ -226,15 +227,28 @@ public class TurboBstTests
     [Test]
     public void TestDeleteTreeBst()
     {
-        var tree = new TurboBinarySearchTree<int>();
+        var tree = new TurboBinarySearchTree<char>();
 
-        tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); 
-        tree.Insert(3); tree.Insert(5); tree.Insert(7);
+        for (char i = 'a'; i <= 'g'; i++)
+        {
+            tree.Insert(i);
+        }
         
         Assert.That(tree, Is.Not.Empty);
+        Console.WriteLine("The tree contains:");
+        foreach (var c in tree)
+        {
+            Console.Write($"{c} ");
+        }
         
         tree.DeleteTree();
         Assert.That(tree, Is.Empty);
+        Console.WriteLine("\nAfter deleting, the tree contains:");
+        foreach (var c in tree)
+        {
+            Console.Write($"{c} ");
+        }
+        
     }
 
     [Test]
@@ -280,7 +294,7 @@ public class TurboBstTests
         }
 
         // The height of the balanced tree is O(log(n)) 
-        Console.WriteLine($"A tree with 100 nodes has a height of ≈ {Math.Ceiling(MathF.Log2(100))}");
+        Console.WriteLine($"A tree with 100 nodes has a height of ≈ {MathF.Round(MathF.Log2(100))}");
         Assert.That(tree.GetTreeHeight(), Is.EqualTo(MathF.Log2(100)).Within(1)); // Allowing a margin of 1 for variations
     }
     
@@ -294,7 +308,7 @@ public class TurboBstTests
             tree.Insert(i);
         }
         
-        Console.WriteLine($"A tree with 1000 nodes has a height of ≈ {Math.Ceiling(MathF.Log2(1000))}");
+        Console.WriteLine($"A tree with 1000 nodes has a height of ≈ {MathF.Round(MathF.Log2(1000))}");
         Assert.That(tree.GetTreeHeight(), Is.EqualTo(MathF.Log2(1000)).Within(1));
     }
     
@@ -308,7 +322,7 @@ public class TurboBstTests
             tree.Insert(i);
         }
         
-        Console.WriteLine($"A tree with 100 000 nodes has a height of ≈ {Math.Ceiling(MathF.Log2(100000))}");
+        Console.WriteLine($"A tree with 100 000 nodes has a height of ≈ {MathF.Round(MathF.Log2(100000))}");
         Assert.That(tree.GetTreeHeight(), Is.EqualTo(MathF.Log2(100000)).Within(1));
     }
 }
