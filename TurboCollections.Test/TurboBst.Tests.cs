@@ -5,17 +5,19 @@ namespace TurboCollections.Test;
 public class TurboBstTests
 {
     [Test]
-    public void TestInsertBst()
+    public void TestInsertionToTree()
     {
         var tree = new TurboBinarySearchTree<int>();
+
+        for (int i = 1; i <= 10; i++)
+        {
+            tree.Insert(i);
+        }
         
-        tree.Insert(3);
-        tree.Insert(1);
-        tree.Insert(5);
-        
-        Assert.That(tree, Is.EquivalentTo(new []{1,3,5}));
+        Assert.That(tree, Is.EquivalentTo(new []{1,2,3,4,5,6,7,8,9,10}));
+        Console.WriteLine("Inserted values 1 - 10;");
+        tree.PrintTree();
     }
-    
     [Test]
     public void TestBalancingRightHeavyTree()
     {
