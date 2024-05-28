@@ -197,6 +197,33 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
          DeleteHelper(node.Right, swap.Data, out node.Right);
          toDelete = node;
       }
+
+      if (toDelete == null) return true;
+      
+      toDelete.Height = Max(GetHeight(toDelete.Left), GetHeight(toDelete.Right)) + 1;
+      int balance = GetBalance(toDelete);
+      
+      if (balance > 1 && GetBalance(toDelete.Left) >= 0)
+      {
+         toDelete = RightRotate(toDelete);
+      }
+      
+      if (balance < -1 && GetBalance(toDelete.Right) <= 0)
+      {
+         toDelete = LeftRotate(toDelete);
+      }
+      
+      if (balance > 1 && GetBalance(toDelete.Left) < 0)
+      {
+         toDelete.Left = LeftRotate(toDelete.Left);
+         toDelete = RightRotate(toDelete);
+      }
+      
+      if (balance < -1 && GetBalance(toDelete.Right) > 0)
+      {
+         toDelete.Right = RightRotate(toDelete.Right);
+         toDelete = LeftRotate(toDelete);
+      }
       return true;
    }
 
