@@ -13,9 +13,49 @@ public class TurboBstTests
         tree.Insert(1);
         tree.Insert(5);
         
-        Assert.Pass();
         Assert.That(tree, Is.EquivalentTo(new []{1,3,5}));
     }
+    
+    [Test]
+    public void TestBalancingRightHeavyTree()
+    {
+        var tree = new TurboBinarySearchTree<int>();
+        
+        tree.Insert(4); tree.Insert(5); tree.Insert(6); 
+        
+        Assert.That(tree.GetTreeHeight(), Is.EqualTo(2));
+    }
+    
+    [Test]
+    public void TestBalancingLeftHeavyTree()
+    {
+        var tree = new TurboBinarySearchTree<int>();
+        
+        tree.Insert(3); tree.Insert(2); tree.Insert(1); 
+        
+        Assert.That(tree.GetTreeHeight(), Is.EqualTo(2));
+    }
+    
+    [Test]
+    public void TestLeftRightBalancingTree()
+    {
+        var tree = new TurboBinarySearchTree<int>();
+        
+        tree.Insert(3); tree.Insert(1); tree.Insert(2); 
+        
+        Assert.That(tree.GetTreeHeight(), Is.EqualTo(2));
+    }
+    
+    [Test]
+    public void TestRightLeftBalancingTree()
+    {
+        var tree = new TurboBinarySearchTree<int>();
+        
+        tree.Insert(3); tree.Insert(5); tree.Insert(4); 
+        
+        Assert.That(tree.GetTreeHeight(), Is.EqualTo(2));
+    }
+    
 
     [Test]
     public void TestSearchBst()
@@ -169,16 +209,5 @@ public class TurboBstTests
         {
             Console.Write($"{r} ");
         }
-    }
-
-    [Test]
-    public void TestBalancingRightHeavyTree()
-    {
-        var tree = new TurboBinarySearchTree<int>();
-        
-        tree.Insert(4); tree.Insert(5); 
-        tree.Insert(6); 
-        
-        Assert.That(tree.GetTreeHeight(), Is.EqualTo(2));
     }
 }
