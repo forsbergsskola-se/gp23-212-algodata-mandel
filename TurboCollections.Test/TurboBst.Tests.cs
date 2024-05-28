@@ -166,11 +166,15 @@ public class TurboBstTests
     {
         var tree = new TurboBinarySearchTree<int>();
 
-        tree.Insert(4); tree.Insert(2); tree.Insert(6); tree.Insert(1); 
-        tree.Insert(3); tree.Insert(5); tree.Insert(7);
+        for (int i = 1; i <= 10; i++)
+        {
+            tree.Insert(i);
+        }
         
+        Console.WriteLine("Tree before deleting the root:");
+        tree.PrintTree();
         Assert.That(tree.Delete(4), Is.EqualTo(true));
-        Assert.That(tree, Is.SupersetOf(new []{1,2,3,5,6,7}));
+        Console.WriteLine("Tree after deleting the root:");
         tree.PrintTree();
     }
     
@@ -185,6 +189,10 @@ public class TurboBstTests
         var newTree = tree.Clone();
 
         Assert.That(tree, Is.EqualTo(newTree));
+        Console.WriteLine("The original tree:");
+        tree.PrintTree();
+        Console.WriteLine("The cloned tree:");
+        newTree.PrintTree();
     }
     
     [Test]

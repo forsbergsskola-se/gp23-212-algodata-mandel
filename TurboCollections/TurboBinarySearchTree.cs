@@ -318,9 +318,22 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       if (node != null)
       {
          Console.WriteLine(indent + (isLast ? "└── " : "├── ") + node.Data);
+
+         // Prepare the indent for the next level
          indent += isLast ? "    " : "│   ";
-         PrintTreeHelper(node.Left, indent, false);
-         PrintTreeHelper(node.Right, indent, true);
+
+         // Determine if the current node has one child
+         bool hasOneChild = (node.Left != null && node.Right == null) || (node.Left == null && node.Right != null);
+        
+         // Print left and right children
+         if (node.Left != null)
+         {
+            PrintTreeHelper(node.Left, indent, node.Right == null);
+         }
+         if (node.Right != null)
+         {
+            PrintTreeHelper(node.Right, indent, true);
+         }
       }
    }
 }
