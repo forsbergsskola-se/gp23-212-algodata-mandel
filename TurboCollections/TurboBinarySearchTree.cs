@@ -20,9 +20,9 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
            Right = null;
         }
     }
-   public Node? root;
+   private Node? root;
 
-   public int GetHeight(Node? n)
+   private static int GetHeight(Node? n)
    {
       return n == null ? 0 : n.Height;
    }
@@ -31,7 +31,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       return (a > b) ? a : b;
    }
 
-   private int GetBalance(Node? n)
+   private static int GetBalance(Node? n)
    {
       return n == null ? 0 : GetHeight(n.Left) - GetHeight(n.Right);
    }
