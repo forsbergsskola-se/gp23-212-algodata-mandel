@@ -66,9 +66,14 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       return y;
    }
    
+   public int GetTreeHeight() // added for testing
+   {
+      return GetHeight(root);
+   }
+   
    public void Insert(T value)
    {
-      InsertHelper(root, value);
+      root = InsertHelper(root, value);
    }
 
    private Node InsertHelper(Node? node, T value)
