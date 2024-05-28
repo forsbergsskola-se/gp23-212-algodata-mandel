@@ -302,6 +302,11 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    {
       return TraversInReverseOrder(root).GetEnumerator();
    }
+   
+   public IEnumerator<T> GetPreEnumerator()
+   {
+      return TraversPreorder(root).GetEnumerator();
+   }
 
    IEnumerator IEnumerable.GetEnumerator() 
    {
