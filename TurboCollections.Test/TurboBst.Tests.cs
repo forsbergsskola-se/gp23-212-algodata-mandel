@@ -117,6 +117,24 @@ public class TurboBstTests
             Console.Write($"{n} ");
         }
     }
+    
+    [Test]
+    public void TestTraversPreOrderBst()
+    {
+        var tree = new TurboBinarySearchTree<int>();
+
+        for (var i = 1; i <= 10; i++)
+        {
+            tree.Insert(i);
+        }
+        
+        Assert.That(tree.GetPreEnumerator(), Is.EquivalentTo(new []{4,2,1,3,8,6,5,7,9,10}));
+        Console.WriteLine("The tree travesed PreOrder: (used when cloning)");
+        foreach (var n in (IEnumerable)tree.GetPreEnumerator())
+        {
+            Console.Write($"{n} ");
+        }
+    }
 
     [Test]
     public void TestDeleteValueNoChildren()
