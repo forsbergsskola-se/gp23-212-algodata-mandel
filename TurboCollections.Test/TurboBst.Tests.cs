@@ -82,8 +82,12 @@ public class TurboBstTests
             tree.Insert(i);
         }
         
-        tree.PrintTree();
         Assert.That(tree, Is.EquivalentTo(new []{1,2,3,4,5,6,7,8,9,10}));
+        Console.WriteLine("The tree in order:");
+        foreach (var n in tree)
+        {
+            Console.Write($"{n} ");
+        }
     }
     
     [Test]
@@ -96,8 +100,12 @@ public class TurboBstTests
             tree.Insert(i);
         }
         
-        tree.PrintTree();
         Assert.That(tree.GetReverseEnumerator(), Is.EquivalentTo(new []{10,9,8,7,6,5,4,3,2,1}));
+        Console.WriteLine("The tree reversed:");
+        foreach (var n in (IEnumerable)tree.GetReverseEnumerator())
+        {
+            Console.Write($"{n} ");
+        }
     }
 
     [Test]
