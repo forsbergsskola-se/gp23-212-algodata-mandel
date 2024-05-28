@@ -218,22 +218,25 @@ public class TurboBstTests
         var stringTree = new TurboBinarySearchTree<string>();
         var charTree = new TurboBinarySearchTree<char>();
         
-        floatTree.Insert(0.5f); floatTree.Insert(4.5f);
-        stringTree.Insert("hello"); stringTree.Insert("bye");
-        charTree.Insert('b'); charTree.Insert('a'); charTree.Insert('c');
+        floatTree.Insert(0.5f); floatTree.Insert(4.5f); floatTree.Insert(6f);
+        stringTree.Insert("Tree");stringTree.Insert("Binary"); stringTree.Insert("Search");
+        charTree.Insert('a'); charTree.Insert('b'); charTree.Insert('c');
         
-        Assert.That(floatTree.GetReverseEnumerator(), Is.EquivalentTo(new []{4.5f, 0.5f}));
-        Console.WriteLine("The String tree contains:");
+        Assert.That(floatTree.GetTreeHeight(), Is.EqualTo(2));
+        Console.WriteLine("The floatTree:");
+        floatTree.PrintTree();
+        
+        Console.WriteLine("\n \nThe String tree contains:");
         foreach (var s in stringTree)
         {
             Console.Write($"{s} ");
         }
-        Console.WriteLine("\nThe Char tree contains:");
+        Console.WriteLine("\n \nThe Char tree contains:");
         foreach (var c in charTree)
         {
             Console.Write($"{c} ");
         }
-        Console.WriteLine("\nThe Char tree reversed:");
+        Console.WriteLine("\n \nThe Char tree reversed:");
         foreach (var r in (IEnumerable)charTree.GetReverseEnumerator())
         {
             Console.Write($"{r} ");
