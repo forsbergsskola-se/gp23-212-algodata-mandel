@@ -38,12 +38,12 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    
    private Node RightRotate(Node y)
    {
-      // Right rotate node y, place x as new root of subtree and z as y.left
+      // Right rotate node y, place x as new root of subtree
       var x = y.Left;
       var z = x.Right;
       
       x.Right = y;
-      y.Left = z; // Can be null... ??
+      y.Left = z;
       
       y.Height = Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
       x.Height = Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
@@ -53,12 +53,12 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    
    private Node LeftRotate(Node x)
    {
-      // Left rotate node x, place y as new root of subtree and z as x.right
+      // Left rotate node x, place y as new root of subtree 
       Node y = x.Right;
       Node z = y.Left;
       
       y.Left = x;
-      x.Right = z; // can be null... ??
+      x.Right = z;
       
       x.Height = Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
       y.Height = Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
@@ -78,31 +78,22 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
 
    private Node InsertHelper(Node? node, T value)
    {
-      if (root == null)
+      if (node == null)
       {
-         root = new Node(value);
-         return root;
+         return new Node(value);
       }
 
-      if (node.Data.CompareTo(value) < 0)
+      if (value.CompareTo(node.Data) < 0)
       {
-         if (node.Right == null)
-         {
-            node.Right = new Node(value);
-         }
-         else
-         {
-            InsertHelper(node.Right, value);
-         }
+         node.Left = InsertHelper(node.Left, value);
       }
-      if (node.Data.CompareTo(value) > 0)
+      else if (value.CompareTo(node.Data) > 0)
       {
-         if (node.Left == null)
-         {
-            node.Left = new Node(value);
-         }
-         else
-            InsertHelper(node.Left, value);
+         node.Right = InsertHelper(node.Right, value);
+      }
+      else
+      {
+         return node; // Duplicate values are not allowed
       }
       
       // Update height of inserted node: H(node) = Max(H(LeftSubTree), H(RightSubTree)) +1
@@ -111,28 +102,32 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       // Get balance of tree: B(H) = H(LeftSubTree) - H(RightSubTree)
       var balance = GetBalance(node);
 
-      // Check if tree needs rotating:    ABS(B(H)) <= 1 ? 
-      if (balance > 1 && node.Left.Data.CompareTo(value) > 0)
+      // Left-Left Case
+      if (balance > 1 && value.CompareTo(node.Left.Data) < 0)
       {
          return RightRotate(node);
       }
-      
-      if (balance < -1 && node.Right.Data.CompareTo(value) < 0)
+
+      // Right-Right Case
+      if (balance < -1 && value.CompareTo(node.Right.Data) > 0)
       {
          return LeftRotate(node);
       }
-      
-      if (balance > 1 && node.Left.Data.CompareTo(value) < 0)
+
+      // Left-Right Case
+      if (balance > 1 && value.CompareTo(node.Left.Data) > 0)
       {
          node.Left = LeftRotate(node.Left);
          return RightRotate(node);
       }
-      
-      if (balance < -1 && node.Right.Data.CompareTo(value) > 0)
+
+      // Right-Left Case
+      if (balance < -1 && value.CompareTo(node.Right.Data) < 0)
       {
          node.Right = RightRotate(node.Right);
          return LeftRotate(node);
       }
+
       return node;
    }
    
@@ -285,4 +280,9 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    {
       return GetEnumerator();
    }
-}// Left Rotation: When a node becomes unbalanced with a balance factor of -2, and its right child has a balance factor of -1 or 0.// Right Rotation: When a node becomes unbalanced with a balance factor of 2, and its left child has a balance factor of 1 or 0.// Left-Right Rotation: When a node becomes unbalanced with a balance factor of 2, and its left child has a balance factor of -1.// Right-Left Rotation: When a node becomes unbalanced with a balance factor of -2, and its right child has a balance factor of 1.
+}
+
+// Left Rotation: When a node becomes unbalanced with a balance factor of -2, and its right child has a balance factor of -1 or 0.
+// Right Rotation: When a node becomes unbalanced with a balance factor of 2, and its left child has a balance factor of 1 or 0.
+// Left-Right Rotation: When a node becomes unbalanced with a balance factor of 2, and its left child has a balance factor of -1.
+// Right-Left Rotation: When a node becomes unbalanced with a balance factor of -2, and its right child has a balance factor of 1.
