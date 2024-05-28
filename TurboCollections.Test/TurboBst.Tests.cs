@@ -234,7 +234,7 @@ public class TurboBstTests
         Console.WriteLine("The floatTree:");
         floatTree.PrintTree();
         
-        Console.WriteLine("\n \nThe String tree contains:");
+        Console.WriteLine("\nThe String tree contains:");
         foreach (var s in stringTree)
         {
             Console.Write($"{s} ");
@@ -249,5 +249,34 @@ public class TurboBstTests
         {
             Console.Write($"{r} ");
         }
+    }
+
+    [Test]
+    public void TestBalancingTreeWith100Nodes()
+    {
+        var tree = new TurboBinarySearchTree<int>();
+
+        for (int i = 1; i <= 100; i++)
+        {
+            tree.Insert(i);
+        }
+
+        // The height of the balanced tree is O(log(n))
+        // "Using the relationship between Fibonacci numbers and the golden ratio (≈1.618)"
+        // The height for a tree with 100 nodes is ≈7.6 -> as an int = 8.
+        Assert.That(tree.GetTreeHeight(), Is.EqualTo(8).Within(1)); // Allowing a margin of 1 for variations
+    }
+    
+    [Test]
+    public void TestBalancingTreeWith1000Nodes()
+    {
+        var tree = new TurboBinarySearchTree<int>();
+
+        for (int i = 1; i <= 1000; i++)
+        {
+            tree.Insert(i);
+        }
+        
+        Assert.That(tree.GetTreeHeight(), Is.EqualTo(10).Within(1));
     }
 }
