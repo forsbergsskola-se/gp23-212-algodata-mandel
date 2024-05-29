@@ -201,31 +201,9 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       }
 
       if (toDelete == null) return true;
+
+      CheckBalance(toDelete, value);
       
-      toDelete.Height = Max(GetHeight(toDelete.Left), GetHeight(toDelete.Right)) + 1;
-      int balance = GetBalance(toDelete);
-      
-      if (balance > 1 && GetBalance(toDelete.Left) >= 0)
-      {
-         toDelete = RightRotate(toDelete);
-      }
-      
-      if (balance < -1 && GetBalance(toDelete.Right) <= 0)
-      {
-         toDelete = LeftRotate(toDelete);
-      }
-      
-      if (balance > 1 && GetBalance(toDelete.Left) < 0)
-      {
-         toDelete.Left = LeftRotate(toDelete.Left);
-         toDelete = RightRotate(toDelete);
-      }
-      
-      if (balance < -1 && GetBalance(toDelete.Right) > 0)
-      {
-         toDelete.Right = RightRotate(toDelete.Right);
-         toDelete = LeftRotate(toDelete);
-      }
       return true;
    }
 
