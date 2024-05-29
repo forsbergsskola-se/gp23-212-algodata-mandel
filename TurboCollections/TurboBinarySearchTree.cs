@@ -5,7 +5,7 @@ using System.Collections;
 namespace TurboCollections;
 public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
 {
-   public class Node
+   private class Node
     {
         public T Data;
         public int Height;
