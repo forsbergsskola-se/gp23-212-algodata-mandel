@@ -93,36 +93,38 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       }
       else
       {
-         return node; // Duplicate values are not allowed
+         return node; // Duplicate values are not allowed in this tree
       }
-      
+
+      return CheckBalance(node, value);;
+   }
+
+   private Node CheckBalance(Node node, T value)
+   {
       // Update height of inserted node: H(node) = Max(H(LeftSubTree), H(RightSubTree)) +1
       node.Height = Max(GetHeight(node.Left), GetHeight(node.Right)) +1;
       
       // Get balance of tree: B(H) = H(LeftSubTree) - H(RightSubTree)
       var balance = GetBalance(node);
 
-      // Left-Left Case
-      if (balance > 1 && value.CompareTo(node.Left.Data) < 0)
+     
+      if (balance > 1 && value.CompareTo(node.Left.Data) < 0) // Left-Left Case
       {
          return RightRotate(node);
       }
-
-      // Right-Right Case
-      if (balance < -1 && value.CompareTo(node.Right.Data) > 0)
+      
+      if (balance < -1 && value.CompareTo(node.Right.Data) > 0) // Right-Right Case
       {
          return LeftRotate(node);
       }
-
-      // Left-Right Case
-      if (balance > 1 && value.CompareTo(node.Left.Data) > 0)
+      
+      if (balance > 1 && value.CompareTo(node.Left.Data) > 0) // Left-Right Case
       {
          node.Left = LeftRotate(node.Left);
          return RightRotate(node);
       }
-
-      // Right-Left Case
-      if (balance < -1 && value.CompareTo(node.Right.Data) < 0)
+      
+      if (balance < -1 && value.CompareTo(node.Right.Data) < 0) // Right-Left Case
       {
          node.Right = RightRotate(node.Right);
          return LeftRotate(node);
@@ -156,7 +158,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       return root != null && DeleteHelper(root, value, out root);
    }
 
-   private bool DeleteHelper(Node? node, T value, out Node toDelete) // out Node to update the tree
+   private bool DeleteHelper(Node? node, T value, out Node toDelete) // out Node to actually update the tree
    {
       if (node == null)
       {
@@ -262,6 +264,26 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       node.Left = null;
       node.Right = null;
    }
+   
+   public void PrintTree()
+   {
+      PrintTreeHelper(root, "", true);
+   }
+
+   private void PrintTreeHelper(Node? node, string indent, bool isLast) // Got this to visualise the tree structure
+   {
+      if (node == null) return;
+      Console.WriteLine(indent + (isLast ? "└── " : "├── ") + node.Data);
+      indent += isLast ? "    " : "│   ";
+         
+      bool hasOneChild = (node.Left != null && node.Right == null) || (node.Left == null && node.Right != null);
+         
+      if (node.Left != null) 
+         PrintTreeHelper(node.Left, indent, node.Right == null);
+         
+      if (node.Right != null)
+         PrintTreeHelper(node.Right, indent, true);
+   }
 
    private IEnumerable<T> TraversInOrder(Node? n)
    {
@@ -311,35 +333,6 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    IEnumerator IEnumerable.GetEnumerator() 
    {
       return GetEnumerator();
-   }
-   
-   public void PrintTree()
-   {
-      PrintTreeHelper(root, "", true);
-   }
-
-   private void PrintTreeHelper(Node? node, string indent, bool isLast) // Got this to visualise the tree structure
-   {
-      if (node != null)
-      {
-         Console.WriteLine(indent + (isLast ? "└── " : "├── ") + node.Data);
-
-         // Prepare the indent for the next level
-         indent += isLast ? "    " : "│   ";
-
-         // Determine if the current node has one child
-         bool hasOneChild = (node.Left != null && node.Right == null) || (node.Left == null && node.Right != null);
-        
-         // Print left and right children
-         if (node.Left != null)
-         {
-            PrintTreeHelper(node.Left, indent, node.Right == null);
-         }
-         if (node.Right != null)
-         {
-            PrintTreeHelper(node.Right, indent, true);
-         }
-      }
    }
 }
 
