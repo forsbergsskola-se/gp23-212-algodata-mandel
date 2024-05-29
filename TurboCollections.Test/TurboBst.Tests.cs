@@ -128,7 +128,7 @@ public class TurboBstTests
         }
         
         Assert.That(tree.GetPreEnumerator(), Is.EquivalentTo(new []{4,2,1,3,8,6,5,7,9,10}));
-        Console.WriteLine("The tree travesed PreOrder: (used when cloning)");
+        Console.WriteLine("The tree traversed PreOrder: (used when cloning)");
         foreach (var n in (IEnumerable)tree.GetPreEnumerator())
         {
             Console.Write($"{n} ");
