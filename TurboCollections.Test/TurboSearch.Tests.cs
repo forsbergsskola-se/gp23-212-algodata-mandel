@@ -4,6 +4,35 @@ namespace TurboCollections.Test;
 
 public class TurboSearchTests
 {
+    public class SearchGenericsTests
+    {
+        [Test]
+        public void TestGenericLinearSearch()
+        {
+            var chars = new List<char> {'a', 'b', 'C', 'd', 'e', 'f'};
+            var stings = new List<string> {"aaa", "aab", "aac"};
+            var floats = new List<float> { 0.01f, 0.02f, 3.2f, 4.6f };
+            
+            Assert.That(TurboSearch.GenericLinearSearch(chars, 'f'), Is.EqualTo(5));
+            Assert.That(TurboSearch.GenericLinearSearch(chars, 'c'), Is.EqualTo(-1));
+            Assert.That(TurboSearch.GenericLinearSearch(stings, "aac"), Is.EqualTo(2));
+            Assert.That(TurboSearch.GenericLinearSearch(floats, 0.02f), Is.EqualTo(1));
+        }
+        
+        [Test]
+        public void TestGenericBinarySearch()
+        {
+            var chars = new List<char>() {'a', 'b', 'C', 'd', 'e', 'f'};
+            var stings = new List<string>() {"aaa", "aab", "aac"};
+            var floats = new List<float> { 0.01f, 0.02f, 3.2f, 4.6f };
+            
+            Assert.That(TurboSearch.GenericBinarySearch(chars, 'f'), Is.EqualTo(5));
+            Assert.That(TurboSearch.GenericBinarySearch(chars, 'c'), Is.EqualTo(-1));
+            Assert.That(TurboSearch.GenericBinarySearch(stings, "aac"), Is.EqualTo(2));
+            Assert.That(TurboSearch.GenericBinarySearch(floats, 0.02f), Is.EqualTo(1));
+        }
+        
+    }
     public class SearchLinearSearchTests : SearchTestBase
     {
         protected override int SearchList(List<int> list, int value)

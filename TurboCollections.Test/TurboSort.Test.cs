@@ -45,7 +45,7 @@ public abstract class SortTestBase
         var expected = numbers.OrderBy(it => it)
             .ToArray();
 
-        Stopwatch stopwatch = new Stopwatch();
+        var stopwatch = new Stopwatch();
         
         stopwatch.Start();
         SortList(numbers);
