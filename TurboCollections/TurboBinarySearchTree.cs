@@ -54,8 +54,8 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    private Node LeftRotate(Node x)
    {
       // Left rotate node x, place y as new root of subtree 
-      Node y = x.Right;
-      Node z = y.Left;
+      var y = x.Right;
+      var z = y!.Left;
       
       y.Left = x;
       x.Right = z;
