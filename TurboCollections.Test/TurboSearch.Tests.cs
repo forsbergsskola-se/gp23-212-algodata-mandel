@@ -20,7 +20,6 @@ public class TurboSearchTests
         }
     }
     
-    /*
     public class SearchGenericLinearSearchTests : SearchTestBase
     {
         protected override int SearchList(List<int> list, int value)
@@ -35,7 +34,7 @@ public class TurboSearchTests
         {
             return TurboSearch.GenericBinarySearch(list, value);
         }
-    }*/
+    }
     
 }
 
@@ -43,7 +42,8 @@ public abstract class SearchTestBase
 {
     protected abstract int SearchList(List<int> list, int value);
     
-    [TestCase(100), TestCase(10), TestCase(100000)]
+    [TestCase(10), TestCase(100), TestCase(100000)]
+    
     public void TestWithRandomNumbers(int count)
     {
         var value = Random.Shared.Next();
@@ -56,9 +56,9 @@ public abstract class SearchTestBase
 
         var timeResults = new List<TimeSpan>();
 
-        Stopwatch stopwatch = new Stopwatch();
+        var stopwatch = new Stopwatch();
 
-        for (int i = 0; i < 101; i++)
+        for (var i = 0; i < 101; i++)
         {
             stopwatch.Start();
             SearchList(numbers, value);
@@ -73,7 +73,7 @@ public abstract class SearchTestBase
         TimeSpan addedResults = default;
         var resultsCount = 0;
         
-        for (int i = 0; i < 100; i++)
+        for (var i = 0; i < 100; i++)
         {
             var timeResult = timeResults.ElementAt(i);
             var ratio = Math.Abs(timeResult / median);
