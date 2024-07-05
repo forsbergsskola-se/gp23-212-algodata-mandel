@@ -15,9 +15,9 @@ class GameState
 {
     // Using a one-dimensional array for a 2D-Grid
     // Because it's easier to clone
-    private char[] cells;
+    private char[] cells = null!;
 
-    public bool IsTerminal()
+    private bool IsTerminal()
     {
         return IsWin() || IsLose() || IsDraw();
     }
@@ -27,7 +27,7 @@ class GameState
         return IsWin('X');
     }
 
-    bool IsWin(char c)
+    public bool IsWin(char c)
     {
         // Using evil maths to check all cells in a hard-coded way
         // check the rows
