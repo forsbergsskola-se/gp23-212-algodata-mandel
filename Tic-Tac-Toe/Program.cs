@@ -15,7 +15,7 @@ class GameState
 {
     // Using a one-dimensional array for a 2D-Grid
     // Because it's easier to clone
-    private char[] cells = null!;
+    private char[]? cells = null;
 
     private bool IsTerminal()
     {
