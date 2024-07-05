@@ -44,7 +44,7 @@ public static class TurboSearch
         int index = 0;
         foreach (var item in list)
         {
-            if (item == null && value == null || item.Equals(value))
+            if (item == null && value == null || item!.Equals(value))
             {
                 return index;
             }
