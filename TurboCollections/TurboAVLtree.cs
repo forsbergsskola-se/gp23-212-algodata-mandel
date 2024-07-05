@@ -10,8 +10,9 @@ public class AVLTree
     public class Node  
     {  
         public int Key, Height;  
-        public Node Left, Right;  
-  
+        public Node? Left;
+        public Node? Right;
+
         public Node(int d) 
         {  
             Key = d;  
@@ -19,10 +20,10 @@ public class AVLTree
         }  
     }
 
-    public Node root;
+    public Node? root;
     
     // Get the height of the tree  
-    private static int Height(Node n)
+    private static int Height(Node? n)
     {
         if (n == null)
             return 0;
@@ -37,10 +38,10 @@ public class AVLTree
     }
     
     // Right-rotate subtree rooted with y  
-    Node RightRotate(Node y)
+    Node? RightRotate(Node? y)
     {
-        Node x = y.Left;
-        Node T2 = x.Right;
+        Node? x = y.Left;
+        Node? T2 = x.Right;
 
         // Perform rotation  
         x.Right = y;
@@ -55,10 +56,10 @@ public class AVLTree
     }
     
     // Left-rotate subtree rooted with x  
-    Node LeftRotate(Node x)
+    Node? LeftRotate(Node? x)
     {
-        Node y = x.Right;
-        Node T2 = y.Left;
+        Node? y = x.Right;
+        Node? T2 = y.Left;
 
         // Perform rotation  
         y.Left = x;
@@ -75,7 +76,7 @@ public class AVLTree
     }
 
     // Get Balance factor of node n  
-    int GetBalance(Node n)
+    int GetBalance(Node? n)
     {
         if (n == null)
             return 0;
@@ -83,7 +84,7 @@ public class AVLTree
         return Height(n.Left) - Height(n.Right);
     }
 
-    public Node Insert(Node node, int key)
+    public Node? Insert(Node? node, int key)
     {
 
         /* 1. Perform the normal BST insertion */
@@ -136,7 +137,7 @@ public class AVLTree
     // A utility function to print preorder traversal  
     // of the tree.  
     // The function also prints height of every node  
-    void PreOrder(Node node)
+    void PreOrder(Node? node)
     {
         if (node != null)
         {
