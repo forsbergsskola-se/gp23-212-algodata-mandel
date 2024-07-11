@@ -78,7 +78,7 @@ public class TurboLinkedList<T> : IEnumerable<T>
             return;
         if (currentIndex == index)
         {
-            first = current.Next;
+            first = current!.Next;
             return;
         }
 

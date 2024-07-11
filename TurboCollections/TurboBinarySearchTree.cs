@@ -162,7 +162,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
    {
       if (node == null)
       {
-         toDelete = null;
+         toDelete = null!;
          return false;
       }
 
@@ -182,11 +182,11 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       
       if (node.Left == null && node.Right == null) // No children
       {
-         toDelete = null;
+         toDelete = null!;
       }
       else if (node.Left == null) // one child left/right
       {
-         toDelete = node.Right;
+         toDelete = node.Right!;
       }
       else if (node.Right == null)
       {

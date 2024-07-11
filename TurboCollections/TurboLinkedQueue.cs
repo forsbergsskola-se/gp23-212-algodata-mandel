@@ -14,7 +14,7 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
         public T Value = default!;
         public Node Next = null!;
     }
-    Node FirstNode = null!;
+    Node? FirstNode = null;
 
     public int Count 
     {
@@ -22,7 +22,7 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
         {
             int count = 0;
             var current = FirstNode;
-            while (true)
+            while (current != null)
             {
                 count++;
                 current = current.Next;

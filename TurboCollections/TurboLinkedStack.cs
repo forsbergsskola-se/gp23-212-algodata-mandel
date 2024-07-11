@@ -5,10 +5,10 @@ namespace TurboCollections;
 
 public class TurboLinkedStack<T> : IEnumerable<T> {
     class Node {
-        public T Value;
-        public Node Previous;
+        public T Value = default!;
+        public Node Previous = null!;
     }
-    Node LastNode;
+    Node LastNode = null!;
 
     public void Push(T item)
     {
@@ -45,7 +45,7 @@ public class TurboLinkedStack<T> : IEnumerable<T> {
         get
         {
             int count = 0;
-            while(true){
+            while(LastNode != null){
                 count++;
                 LastNode = LastNode.Previous;
             }
