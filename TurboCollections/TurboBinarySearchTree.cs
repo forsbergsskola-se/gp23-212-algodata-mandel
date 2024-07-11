@@ -108,23 +108,23 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       var balance = GetBalance(node);
 
      
-      if (balance > 1 && value.CompareTo(node.Left.Data) < 0) // Left-Left Case
+      if (balance > 1 && value.CompareTo(node.Left!.Data) < 0) // Left-Left Case
       {
          return RightRotate(node);
       }
       
-      if (balance < -1 && value.CompareTo(node.Right.Data) > 0) // Right-Right Case
+      if (balance < -1 && value.CompareTo(node.Right!.Data) > 0) // Right-Right Case
       {
          return LeftRotate(node);
       }
       
-      if (balance > 1 && value.CompareTo(node.Left.Data) > 0) // Left-Right Case
+      if (balance > 1 && value.CompareTo(node.Left!.Data) > 0) // Left-Right Case
       {
          node.Left = LeftRotate(node.Left);
          return RightRotate(node);
       }
       
-      if (balance < -1 && value.CompareTo(node.Right.Data) < 0) // Right-Left Case
+      if (balance < -1 && value.CompareTo(node.Right!.Data) < 0) // Right-Left Case
       {
          node.Right = RightRotate(node.Right);
          return LeftRotate(node);
@@ -238,7 +238,7 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       DeleteTree(node.Left);
       DeleteTree(node.Right);
 
-      node.Data = default(T);
+      node.Data = default(T)!;
       node.Left = null;
       node.Right = null;
    }

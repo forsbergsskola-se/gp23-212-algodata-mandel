@@ -11,10 +11,10 @@ public interface ITurboQueue<T> : IEnumerable<T> {
 }
 public class TurboLinkedQueue<T> : ITurboQueue<T> {
     class Node {
-        public T Value;
-        public Node Next;
+        public T Value = default!;
+        public Node Next = null!;
     }
-    Node FirstNode;
+    Node FirstNode = null!;
 
     public int Count 
     {
@@ -22,7 +22,7 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
         {
             int count = 0;
             var current = FirstNode;
-            while (current != null)
+            while (true)
             {
                 count++;
                 current = current.Next;
@@ -35,7 +35,7 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
         Node newNode = new()
         {
             Value = value,
-            Next = null
+            Next = null!
         };
         
         if (FirstNode == null)
@@ -75,7 +75,7 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
     public IEnumerator<T> GetEnumerator()
     {
         var current = FirstNode;
-        while (current != null)
+        while (true)
         {
             yield return current.Value;
             current = current.Next;

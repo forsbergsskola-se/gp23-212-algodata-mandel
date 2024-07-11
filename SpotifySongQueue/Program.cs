@@ -17,7 +17,7 @@ void CheckAddOrSkip()
         case "a":
             Console.WriteLine("Enter the Song's Name:");
             var songName = Console.ReadLine();
-            songQueue.Enqueue(songName);
+            songQueue.Enqueue(songName!);
             break;
         case "s" when songQueue.Count != 0:
             Console.WriteLine($"Now playing: {songQueue.Peek()}");
@@ -35,7 +35,7 @@ void CheckAddOrSkip()
                 case "a":
                     Console.WriteLine("Enter the Song's Name:");
                     var name = Console.ReadLine();
-                    songQueue.Enqueue(name);
+                    songQueue.Enqueue(name!);
                     break;
             }
             break;

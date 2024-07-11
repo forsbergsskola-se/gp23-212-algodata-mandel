@@ -81,7 +81,7 @@ class GameState
         if (IsTerminal()) yield break;
 
         char symbol = CurrentPlayer();
-        for (int i = 0; i < cells.Length; i++)
+        for (int i = 0; i < cells!.Length; i++)
         {
             if (cells[i] == ' ')
             {

@@ -5,7 +5,7 @@ namespace TurboCollections;
 public class TurboLinkedList<T> : IEnumerable<T> 
 {
     class Node {
-        public T Value;
+        public T? Value;
         public Node? Next;
 
         public Node(T value)
@@ -49,20 +49,23 @@ public class TurboLinkedList<T> : IEnumerable<T>
 
     public void Remove(T value)
     {
-        var current = first;
-
-        if (current.Value.Equals(value))
+        if (first != null)
         {
-            first = first.Next;
-            return;
-        }
-        while (current.Next != null)
-        {
-            if (current.Next.Value.Equals(value))
+            var current = first;
+            
+            if (current.Value!.Equals(value))
             {
-                current.Next = current.Next.Next;
+                first = first.Next;
+                return;
             }
-            current = current.Next;
+            while (current!.Next != null)
+            {
+                if (current.Next.Value!.Equals(value))
+                {
+                    current.Next = current.Next.Next;
+                }
+                current = current.Next;
+            }
         }
     }
 
@@ -84,7 +87,7 @@ public class TurboLinkedList<T> : IEnumerable<T>
             currentIndex++;
             if (currentIndex == index)
             {
-                current.Next = current.Next.Next;
+                current.Next = current.Next!.Next;
             }
 
             current = current.Next;
@@ -101,7 +104,7 @@ public class TurboLinkedList<T> : IEnumerable<T>
     {
         if (first == null)
             throw new EmptyListException();
-        return first.Value;
+        return first.Value!;
     }
 
     public T PeekAtIndex(int index)
@@ -116,7 +119,7 @@ public class TurboLinkedList<T> : IEnumerable<T>
         
         while (current != null)
         {
-            yield return current.Value;
+            yield return current.Value!;
             current = current.Next;
         }
     }
