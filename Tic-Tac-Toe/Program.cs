@@ -1,4 +1,6 @@
-﻿CheckAllPossibleMoves(GameState.Start());
+﻿// Marc's TicTackToe
+
+CheckAllPossibleMoves(GameState.Start());
 
 void CheckAllPossibleMoves(GameState currentState)
 {
@@ -33,15 +35,15 @@ class GameState
         // check the rows
         for (int x = 0; x < 9; x += 3)
         {
-            if (cells[x] == cells[x + 1] && cells[x + 1] == cells[x + 2] && cells[x + 2] == c) return true;
+            if (cells![x] == cells[x + 1] && cells[x + 1] == cells[x + 2] && cells[x + 2] == c) return true;
         }
         // check the columns
         for (int x = 0; x < 3; x++)
         {
-            if (cells[x] == cells[x + 3] && cells[x + 3] == cells[x + 6] && cells[x + 6] == c) return true;
+            if (cells![x] == cells[x + 3] && cells[x + 3] == cells[x + 6] && cells[x + 6] == c) return true;
         }
         // check diagonals
-        if (cells[0] == cells[4] && cells[4] == cells[8] && cells[8] == c) return true;
+        if (cells![0] == cells[4] && cells[4] == cells[8] && cells[8] == c) return true;
         if (cells[2] == cells[4] && cells[4] == cells[6] && cells[6] == c) return true;
         return false;
     }
@@ -55,14 +57,14 @@ class GameState
     {
         if (IsWin() || IsLose()) return false;
         // using LINQ magic, to count, how many cells are empty
-        return cells.Count(it => it == ' ') == 0;
+        return cells!.Count(it => it == ' ') == 0;
     }
     
     public char CurrentPlayer()
     {
         // using LINQ & modulo magic to check if the number of moves
         // is even, then it's X's turn
-        switch (cells.Count(it => it != ' ') % 2)
+        switch (cells!.Count(it => it != ' ') % 2)
         {
             case 0:
                 return 'X';
@@ -116,7 +118,7 @@ class GameState
     public override string ToString()
     {
         string state = IsWin() ? "X Wins." : IsLose() ? "O Wins." : IsDraw() ? "Draw." : "TBC";
-        return $@"{cells[0]} | {cells[1]} | {cells[2]}
+        return $@"{cells![0]} | {cells[1]} | {cells[2]}
 ---------
 {cells[3]} | {cells[4]} | {cells[5]}
 ---------
