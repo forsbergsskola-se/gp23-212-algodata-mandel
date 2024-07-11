@@ -1,6 +1,5 @@
 ﻿using TurboCollections;
 
-start:
 var stateHistory = new TurboLinkedStack<String>();
 stateHistory.Push("Main Menu");
 var level = 1;

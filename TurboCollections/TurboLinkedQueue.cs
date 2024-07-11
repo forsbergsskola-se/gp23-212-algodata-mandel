@@ -63,7 +63,7 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
     public T Dequeue()
     {
         var temp = FirstNode;
-        FirstNode = temp.Next;
+        FirstNode = temp!.Next;
         return temp.Value;
     }
 
@@ -77,7 +77,7 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
         var current = FirstNode;
         while (true)
         {
-            yield return current.Value;
+            yield return current!.Value;
             current = current.Next;
         }
     }
