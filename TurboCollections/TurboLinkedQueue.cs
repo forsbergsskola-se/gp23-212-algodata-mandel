@@ -75,7 +75,7 @@ public class TurboLinkedQueue<T> : ITurboQueue<T> {
     public IEnumerator<T> GetEnumerator()
     {
         var current = FirstNode;
-        while (true)
+        while (current != null)
         {
             yield return current!.Value;
             current = current.Next;

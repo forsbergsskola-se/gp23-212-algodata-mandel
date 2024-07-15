@@ -56,7 +56,7 @@ public class TurboLinkedStack<T> : IEnumerable<T> {
     public IEnumerator<T> GetEnumerator()
     {
         var current = LastNode;
-        while (true)
+        while (current != null)
         {
             yield return current.Value;
             current = current.Previous;
