@@ -1,13 +1,7 @@
 namespace TurboCollections;
-/// <summary>
-/// Let's try adding summary comments to generate documentation from!
-/// </summary>
+
 public static partial class TurboSort
 {
-    /// <summary>
-    /// A Bubble Sort algorithm to sort all elements in a list.
-    /// </summary>
-    /// <param name="list"></param>
     public static void BubbleSort(List<int> list)
     {
         var loop = list.Count;
