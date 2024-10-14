@@ -254,8 +254,6 @@ public class TurboBinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
       Console.WriteLine(indent + (isLast ? "└── " : "├── ") + node.Data);
       indent += isLast ? "    " : "│   ";
          
-      bool hasOneChild = (node.Left != null && node.Right == null) || (node.Left == null && node.Right != null);
-         
       if (node.Left != null) 
          PrintTreeHelper(node.Left, indent, node.Right == null);
          
